@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "rentacar-v2"
+    }
+  },
+  "defaultProject": "rentacar-v2",
+  "cli": {
+    "analytics": "a784b014-36b3-4d1e-8e5b-95818d58101d"
+  }
 }

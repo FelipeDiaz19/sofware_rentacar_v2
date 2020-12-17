@@ -1,0 +1,194 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item "><a [routerLink]="['home']" style='color: rgb(0, 0, 0);;'>Administracion</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">tarifas arriendo</li>
+    </ol>
+  </nav>
+  <h1 class="h3">Administracion de tarifas</h1>
+</div>
+<div>
+  <div class="nav justify-content-end">
+    <li class="nav-item " role="presentation">
+      <label for="inputSucursal">Sucursales</label>
+      <select id="inputSucursal" name="inputSucursal" class="form-control ">
+      </select>
+    </li>
+  </div>
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="precios_automovil-tab" data-toggle="tab" href="#precios_automovil" role="tab"
+        aria-controls="precios_automovil" aria-selected="true">Tarifas automoviles</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="precios_accesorios-tab" data-toggle="tab" href="#precios_accesorios" role="tab"
+        aria-controls="precios_accesorios" aria-selected="false">Tarifas accesorios</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+
+    <div class="tab-pane fade show active" id="precios_automovil" role="tabpanel"
+      aria-labelledby="precios_automovil-tab">
+      <br><br>
+
+      <form>
+        <h5>Registrar categoria de vehiculos</h5>
+        <br>
+        <div class="form-row">
+          <div class="form-group col-xl-5">
+            <label for="nombre_categoria">nombre categoria</label>
+            <input type="text" class="form-control" id="nombre_categoria">
+          </div>
+          <div class="form-group col-xl-4">
+            <label for="modelo_vehiculo">Modelo vehiculos</label>
+            <input type="text" class="form-control" id="modelo_vehiculo">
+          </div>
+          <div class="form-group col-xl-3">
+            <label for="anio_vehiculo">año vehiculos </label>
+            <select class="form-control" id="anio_vehiculo">
+            </select>
+          </div>
+          <div class="form-group col-xl-3">
+            <label for="valor_diario_vehiculo">valor neto diario (1 dia) </label>
+            <input type="number" class="form-control" id="valor_diario_vehiculo">
+          </div>
+          <div class="form-group col-xl-3">
+            <label for="valor_semanal_vehiculo">valor neto semanal (7 dias) </label>
+            <input type="number" class="form-control" id="valor_semanal_vehiculo">
+          </div>
+          <div class="form-group col-xl-3">
+            <label for="valor_quincenal_vehiculo">valor neto quincenal (15 dias) </label>
+            <input type="number" class="form-control" id="valor_quincenal_vehiculo">
+          </div>
+          <div class="form-group col-xl-3">
+            <label for="valor_mensual_vehiculo">valor neto mensual (30 dias) </label>
+            <input type="number" class="form-control" id="valor_mensual_vehiculo">
+          </div>
+        </div>
+        <button class="btn btn-success btn-sm">Registrar </button>
+      </form>
+      <br><br><br>
+      <h5>Todas las categorias</h5>
+      <table id="tabla_tarifas_vehiculos" class="table display nowrap table-striped cell-border table-bordered">
+        <thead class="btn-dark">
+          <tr>
+            <th scope="col">categoria</th>
+            <th scope="col">modelo</th>
+            <th scope="col">año</th>
+            <th scope="col" class="btn-danger">Valor diario</th>
+            <th scope="col" class="btn-success">Valor semanal</th>
+            <th scope="col" class="btn-primary">valor quincenal</th>
+            <th scope="col" class="btn-info">valor mensual</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody style='font-size: 0.7rem;'>
+          <tr>
+            <th>xxxxxxx</th>
+            <th>xxxxxxx</th>
+            <th>xxxxxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>
+              <button class='btn btn-outline-info'><i class='far fa-edit'></i></button>
+            </th>
+          </tr>
+          <tr style='font-size: 0.7rem;'>
+            <th>xxxxxxx</th>
+            <th>xxxxxxx</th>
+            <th>xxxxxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>
+              <button class='btn btn-outline-info'><i class='far fa-edit'></i></button>
+            </th>
+          </tr>
+          <tr style='font-size: 0.7rem;'>
+            <th>xxxxxxx</th>
+            <th>xxxxxxx</th>
+            <th>xxxxxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>NETO: $xxxxx - IVA : $xxxxx - TOTAL: $xxxx</th>
+            <th>
+              <button class='btn btn-outline-info'><i class='far fa-edit'></i></button>
+            </th>
+          </tr>
+        </tbody>
+        <tfoot class="btn-dark">
+          <tr>
+            <th scope="col">categoria</th>
+            <th scope="col">modelo</th>
+            <th scope="col">año</th>
+            <th scope="col" class="btn-danger">Valor diario</th>
+            <th scope="col" class="btn-success">Valor semanal</th>
+            <th scope="col" class="btn-primary">valor quincenal</th>
+            <th scope="col" class="btn-info">valor mensual</th>
+            <th scope="col"></th>
+          </tr>
+        </tfoot>
+      </table>
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade" id="precios_accesorios" role="tabpanel" aria-labelledby="precios_accesorios-tab">
+      <br><br>
+      <div class="row">
+        <div class="col-xl-4">
+          <form>
+            <div class="form-group">
+              <label for="nombre_accesorio">nombre Accesorio</label>
+              <input type="text" class="form-control" id="nombre_accesorio">
+            </div>
+            <div class="form-group">
+              <label for="precio_accesorio">Precio accesorio</label>
+              <input type="number" class="form-control" id="precio_accesorio">
+            </div>
+            <button class="btn btn-success btn-sm">Registrar </button>
+            <button class="btn btn-warning btn-sm">Editar </button>
+            <button class="btn btn-danger btn-sm">Eliminar </button>
+
+          </form>
+        </div>
+        <div class="col-xl-8">
+          <br>
+          <table id="tabla_tarifas_accesorios" class="table table-striped table-bordered" style="width:100%">
+            <thead class="btn-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre accesorio</th>
+                <th scope="col" class="btn-danger">valor diario</th>
+                <th scope="col" class="btn-success">valor diario (mas de 3 dias)</th>
+              </tr>
+            </thead>
+            <tbody style='font-size: 0.7rem;'>
+              <tr>
+                <th>x</th>
+                <th>xxxxxxxxxxxxxx</th>
+                <th>NETO: xxxx - IVA: xxxxx - TOTAL: XXXX</th>
+                <th>NETO: xxxx - IVA: xxxxx - TOTAL: XXXX</th>
+              </tr>
+              <tr>
+                <th>x</th>
+                <th>xxxxxxxxxxxxxx</th>
+                <th>NETO: xxxx - IVA: xxxxx - TOTAL: XXXX</th>
+                <th>NETO: xxxx - IVA: xxxxx - TOTAL: XXXX</th>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

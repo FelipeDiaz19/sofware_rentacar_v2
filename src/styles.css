@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+a {
+  color: rgb(0, 0, 0);
+}
+
+a:hover {
+  color: rgb(255, 0, 0);
+}
+
+.nav-link {
+  color: rgb(0, 0, 0);
+}
+
+.nav-link:hover {
+  color: rgb(255, 0, 0);
+}
+
+.card .nav-link {
+  color: rgb(0, 0, 0);
+}
+
+.card .nav-link:hover {
+  color: rgb(255, 0, 0);
+}
+

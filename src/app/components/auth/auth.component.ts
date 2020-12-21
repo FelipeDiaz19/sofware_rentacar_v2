@@ -20,7 +20,6 @@ export class AuthComponent implements OnInit {
 
   buscarUsuario() {
     const { id, token } = this.route.snapshot.params;
-    console.log(this.route.snapshot.params)
     this.auth.login(id, token).subscribe((usuario: Usuario) => {
       this.router.navigate(["/home"]);
     }, (error) => {

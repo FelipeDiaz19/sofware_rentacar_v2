@@ -1,0 +1,52 @@
+<div class="tab-pane">
+  <br><br>
+
+  <form autocomplete="off" [formGroup]="form" (ngSubmit)="guardar()">
+    <h5>Registrar categoria de vehiculos</h5>
+    <br>
+    <div class="form-row">
+      <div class="form-group col-xl-5">
+        <label for="nombre_categoria">nombre categoria</label>
+        <input [class.is-invalid]="validarCampos('nombre_categoria')" type="text" class="form-control"
+          formControlName="nombre_categoria">
+      </div>
+      <div class="form-group col-xl-4">
+        <label for="modelo_vehiculo">Modelo vehiculos</label>
+        <input [class.is-invalid]="validarCampos('modelo_vehiculo')" type="text" class="form-control"
+          formControlName="modelo_vehiculo">
+      </div>
+      <div class="form-group col-xl-3">
+        <label for="anio_vehiculo">año vehiculos </label>
+        <select [class.is-invalid]="validarCampos('anio_vehiculo')" class="form-control"
+          formControlName="anio_vehiculo">
+          <option *ngFor="let a of anios" [value]="a">{{a}}</option>
+        </select>
+      </div>
+      <div class="form-group col-xl-3">
+        <label for="valor_diario_vehiculo">valor neto diario (1 dia) </label>
+        <input [class.is-invalid]="validarCampos('valor_diario_vehiculo')" type="number" class="form-control"
+          formControlName="valor_diario_vehiculo">
+      </div>
+      <div class="form-group col-xl-3">
+        <label for="valor_semanal_vehiculo">valor neto semanal (7 dias) </label>
+        <input [class.is-invalid]="validarCampos('valor_semanal_vehiculo')" type="number" class="form-control"
+          formControlName="valor_semanal_vehiculo">
+      </div>
+      <div class="form-group col-xl-3">
+        <label for="valor_quincenal_vehiculo">valor neto quincenal (15 dias) </label>
+        <input [class.is-invalid]="validarCampos('valor_quincenal_vehiculo')" type="number" class="form-control"
+          formControlName="valor_quincenal_vehiculo">
+      </div>
+      <div class="form-group col-xl-3">
+        <label for="valor_mensual_vehiculo">valor neto mensual (30 dias) </label>
+        <input [class.is-invalid]="validarCampos('valor_mensual_vehiculo')" type="number" class="form-control"
+          formControlName="valor_mensual_vehiculo">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success btn-sm">Registrar </button>
+  </form>
+
+
+  <app-tarifas-vehiculos-list></app-tarifas-vehiculos-list>
+
+</div>

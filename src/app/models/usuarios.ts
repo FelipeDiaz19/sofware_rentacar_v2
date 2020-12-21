@@ -1,5 +1,5 @@
-import { Rol } from './rol';
-import { Sucursal } from './sucursal';
+import { Rol } from './roles';
+import { Sucursal } from './sucursales';
 
 export class Usuario {
   id_usuario: number;

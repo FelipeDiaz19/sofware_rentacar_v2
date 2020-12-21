@@ -1,0 +1,31 @@
+<div class="tab-pane">
+  <br><br>
+  <div class=" row">
+    <div class="col-xl-4">
+      <form autocomplete="off" (ngSubmit)="guardarAccesorio(form)" #form="ngForm">
+        <div class="form-group">
+          <label for="nombre_accesorio">nombre Accesorio</label>
+          <input type="text" class="form-control "
+            [class.is-invalid]="nombre_accesorio.invalid && nombre_accesorio.touched" #nombre_accesorio="ngModel"
+            name="nombre_accesorio" minlength="3" [(ngModel)]="accesorio.nombre_accesorio" required>
+          <small *ngIf="nombre_accesorio.invalid && nombre_accesorio.touched" class="form-text text-danger">ingrese
+            nombre valido</small>
+        </div>
+        <div class="form-group">
+          <label for="precio_accesorio">Precio accesorio</label>
+          <input type="number" class="form-control"
+            [class.is-invalid]="precio_accesorio.invalid && precio_accesorio.touched" #precio_accesorio="ngModel"
+            name="precio_accesorio" [(ngModel)]="accesorio.precio_accesorio" required>
+          <small *ngIf="precio_accesorio.invalid && precio_accesorio.touched" class="form-text text-danger">ingrese
+            debe ingresar un precio</small>
+        </div>
+        <button type="submit" class="btn btn-success btn-sm">Registrar </button>
+        <button class="btn btn-warning btn-sm">Editar </button>
+        <button class="btn btn-danger btn-sm">Eliminar </button>
+      </form>
+    </div>
+    <div class="col-xl-8">
+      <app-tarifas-accesorios-list></app-tarifas-accesorios-list>
+    </div>
+  </div>
+</div>

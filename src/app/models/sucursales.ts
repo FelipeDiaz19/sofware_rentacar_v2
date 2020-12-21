@@ -1,4 +1,4 @@
 export class Sucursal {
-  id_scursal: number;
+  id_sucursal: number;
   nombre_sucursal: string;
 }

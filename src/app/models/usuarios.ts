@@ -6,10 +6,10 @@ export class Usuario {
   estado_usuario: number;
   nombre_usuario: string;
   email_usuario: string;
+  clave_usuario: string;
   userAt: string;
   id_rol: number;
   id_sucursal: number;
-  usertoken: string;
   role: Rol;
   sucursale: Sucursal;
 }

@@ -9,13 +9,12 @@
     </button>
 
     <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="http://localhost/proyectos/rentacar/index.php/cargar_panel?panel=1">Modulos
+      <a class="btn dropdown-item" (click)="irModuloGestion()">Modulos
         Gestion</a>
-      <a class="dropdown-item" href="http://localhost/proyectos/rentacar/index.php/cargar_panel?panel=2"> Modulos
+      <a class="btn dropdown-item" (click)="irModuloAtencion()"> Modulos
         Atencion</a>
-      <a class="dropdown-item" href="#"> Modulos
+      <a class="btn dropdown-item"> Modulos
         Administracion</a>
-
     </div>
   </div>
 
@@ -27,11 +26,11 @@
   <div class="dropdown px-3">
     <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" id="dropdownMenuButton"
       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span> nombre del usuario </span>
+      <span> {{usuario.nombre_usuario}} </span>
     </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="">Mi perfil</a>
-      <a class="dropdown-item" href="">Cerrar Sesion</a>
+    <div class="btn dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="btn dropdown-item" (click)="irPerfil()">Mi perfil</a>
+      <a class="btn dropdown-item" (click)="salir()">Cerrar Sesion</a>
     </div>
   </div>
 

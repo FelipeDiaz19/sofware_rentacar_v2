@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Usuario } from 'src/app/models/usuarios';
+
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -8,12 +10,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute,) {
+  usuario: Usuario = new Usuario();
+
+  constructor(private auth: AuthService) {
   }
 
   ngOnInit(): void {
-
-    //preguntar si existe usuario
+    this.usuario = this.auth.getUsuario();
   }
 
 

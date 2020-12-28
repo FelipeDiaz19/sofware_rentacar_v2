@@ -13,7 +13,7 @@ export class AuthService {
 
 
   constructor(private http: HttpClient) {
-
+    this.usuario.nombre_usuario = "cargando..."
     this.estadoSesion();
   }
 
@@ -26,21 +26,6 @@ export class AuthService {
     }))
   }
 
-  private guardarSesion(TOKEN: string, USUARIO: Usuario) {
-    this.userToken = TOKEN;
-    localStorage.setItem('usuario', JSON.stringify(USUARIO));
-    localStorage.setItem("usertoken", TOKEN);
-  }
-
-  estadoSesion(): boolean {
-    if (localStorage.getItem('usertoken') && localStorage.getItem('usuario')) {
-      this.userToken = localStorage.getItem('usertoken');
-      return true;
-    } else {
-      this.userToken = '';
-      return false;
-    }
-  }
 
   cerrarSesion() {
     localStorage.removeItem("usertoken");
@@ -52,6 +37,21 @@ export class AuthService {
     return this.usuario;
   }
 
+  private guardarSesion(TOKEN: string, USUARIO: Usuario) {
+    this.userToken = TOKEN;
+    localStorage.setItem('usuario', JSON.stringify(USUARIO));
+    localStorage.setItem("usertoken", TOKEN);
+  }
 
+  private estadoSesion(): boolean {
+    if (localStorage.getItem('usertoken') && localStorage.getItem('usuario')) {
+      this.userToken = localStorage.getItem('usertoken');
+      this.usuario = JSON.parse(localStorage.getItem('usuario'));
+      return true;
+    } else {
+      this.userToken = '';
+      return false;
+    }
+  }
 
 }

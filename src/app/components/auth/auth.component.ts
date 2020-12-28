@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { Usuario } from 'src/app/models/usuarios'
-import { NavbarComponent } from 'src/app/template/navbar/navbar.component';
 import { environment } from 'src/environments/environment'
 @Component({
   selector: 'app-auth',
@@ -10,6 +9,8 @@ import { environment } from 'src/environments/environment'
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+
+  usuario: Usuario = new Usuario();
 
   constructor(private route: ActivatedRoute, private auth: AuthService, private router: Router) {
   }
@@ -21,6 +22,7 @@ export class AuthComponent implements OnInit {
   buscarUsuario() {
     const { id, token } = this.route.snapshot.params;
     this.auth.login(id, token).subscribe((usuario: Usuario) => {
+      this.usuario = usuario;
       this.router.navigate(["/home"]);
     }, (error) => {
       window.location.href = `${environment.indexUrl}`;

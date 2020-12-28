@@ -1,7 +1,8 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Accesorio } from 'src/app/models/accesorios';
+import { SucursalesService } from 'src/app/services/sucursales.service';
+import { Sucursal } from 'src/app/models/sucursales';
 
 @Component({
   selector: 'app-tarifas-accesorios-form',
@@ -10,18 +11,24 @@ import { Accesorio } from 'src/app/models/accesorios';
 })
 export class TarifasAccesoriosFormComponent implements OnInit {
 
+
   accesorio: Accesorio = new Accesorio();
-  id_sucursal: Number
-  constructor(private router: ActivatedRoute) {
 
-    this.router.params.subscribe(params => {
-      this.id_sucursal = params["id"];
-    })
+  sucursales: Sucursal[] = [];
 
-
+  constructor(private sucursalService: SucursalesService) {
   }
 
+
+  buscarSucursales() {
+    this.sucursalService.getSucursales().subscribe((sucursales: Sucursal[]) => {
+      this.sucursales = sucursales;
+    })
+  }
+
+
   ngOnInit(): void {
+    this.buscarSucursales();
     this.accesorio.nombre_accesorio = "";
     this.accesorio.precio_accesorio = 0;
   }
@@ -33,8 +40,7 @@ export class TarifasAccesoriosFormComponent implements OnInit {
       })
       return;
     }
-    //cacturar tambien la id de la sucursal
-    console.log(this.id_sucursal);
+    //enviar al servidor
     console.log(FORM.value);
 
   }

@@ -4,11 +4,11 @@ import { HomeComponent } from './views/home/home.component';
 import { TarifasHeaderComponent } from './views/tarifas/tarifas-header/tarifas-header.component';
 import { tarifas_routes } from './views/tarifas/tarifas.routes';
 import { ItemComponent } from './views/item/item.component';
-import { AuthComponent } from './components/auth/auth.component';
+import { AuthComponent } from './components/auth.component';
 import { AuthGuard } from './helpers/auth.guard';
 
 const routes: Routes = [
-  { path: "auth/:id/:token", component: AuthComponent },
+  { path: "auth/:token", component: AuthComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'tarifas', component: TarifasHeaderComponent, canActivate: [AuthGuard], children: tarifas_routes },
   { path: 'item', component: ItemComponent, canActivate: [AuthGuard] },

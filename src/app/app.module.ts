@@ -1,18 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { AgGridModule } from 'ag-grid-angular';
 
 
 //rutas
 import { AppRoutingModule } from './app-routing.module';
 
-
+//helpers
+import { AuthInterceptor } from './helpers/auth.interceptor';
 
 // servicios
 import { AuthService } from './services/auth.service';
 import { SucursalesService } from './services/sucursales.service';
+import { AccesoriosService } from './services/accesorios.service';
 
 
 // components
@@ -21,7 +23,7 @@ import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarsComponent } from './template/sidebars/sidebars.component';
 import { HomeComponent } from './views/home/home.component';
 import { ItemComponent } from './views/item/item.component';
-import { AuthComponent } from './components/auth/auth.component';
+import { AuthComponent } from './components/auth.component';
 import { TarifasHeaderComponent } from './views/tarifas/tarifas-header/tarifas-header.component';
 import { TarifasVehiculosFormComponent } from './views/tarifas/tarifas-vehiculos/tarifas-vehiculos-form/tarifas-vehiculos-form.component';
 import { TarifasVehiculosListComponent } from './views/tarifas/tarifas-vehiculos/tarifas-vehiculos-list/tarifas-vehiculos-list.component';
@@ -50,12 +52,15 @@ import { TarifasAccesoriosListComponent } from './views/tarifas/tarifas-accesori
   ],
   imports: [
     BrowserModule,
+    AgGridModule.withComponents([]),
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [AuthService, SucursalesService],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthService, SucursalesService, AccesoriosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

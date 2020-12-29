@@ -17,9 +17,9 @@ export class AuthService {
     this.estadoSesion();
   }
 
-  login(ID: string, TOKEN: string) {
+  login(TOKEN: string) {
     const headers = new HttpHeaders({ "usertoken": TOKEN });
-    return this.http.get(`${environment.apiUrl}usuarios/buscarUsuario/${ID}`, { headers }).pipe(map((response: any) => {
+    return this.http.get(`${environment.apiUrl}usuarios/validarUsuario/${TOKEN}`, { headers }).pipe(map((response: any) => {
       this.usuario = response.data;
       this.guardarSesion(TOKEN, this.usuario);
       return this.usuario;
@@ -37,13 +37,7 @@ export class AuthService {
     return this.usuario;
   }
 
-  private guardarSesion(TOKEN: string, USUARIO: Usuario) {
-    this.userToken = TOKEN;
-    localStorage.setItem('usuario', JSON.stringify(USUARIO));
-    localStorage.setItem("usertoken", TOKEN);
-  }
-
-  private estadoSesion(): boolean {
+  estadoSesion(): boolean {
     if (localStorage.getItem('usertoken') && localStorage.getItem('usuario')) {
       this.userToken = localStorage.getItem('usertoken');
       this.usuario = JSON.parse(localStorage.getItem('usuario'));
@@ -53,5 +47,14 @@ export class AuthService {
       return false;
     }
   }
+
+
+  private guardarSesion(TOKEN: string, USUARIO: Usuario) {
+    this.userToken = TOKEN;
+    localStorage.setItem('usuario', JSON.stringify(USUARIO));
+    localStorage.setItem("usertoken", TOKEN);
+  }
+
+
 
 }

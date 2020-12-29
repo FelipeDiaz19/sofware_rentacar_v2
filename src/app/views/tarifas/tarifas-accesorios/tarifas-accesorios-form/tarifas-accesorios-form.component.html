@@ -6,12 +6,13 @@
 
         <div class="form-group">
           <label for="inputSucursal">Sucursales</label>
-          <select class="form-control" #sucursal="ngModel" name="sucursal"
-            [class.is-invalid]=" sucursal.invalid && sucursal.touched" [ngModel]="accesorio.sucursale" required>
+          <select class="form-control" #id_sucursal="ngModel" name="id_sucursal"
+            [class.is-invalid]=" id_sucursal.invalid && id_sucursal.touched" [ngModel]="accesorio.id_sucursal" required>
             <option *ngFor="let s of sucursales" [value]="s.id_sucursal">{{s.nombre_sucursal}}
             </option>
           </select>
-          <small *ngIf="sucursal.invalid && sucursal.touched" class="form-text text-danger">ingrese una sucursal</small>
+          <small *ngIf="id_sucursal.invalid && id_sucursal.touched" class="form-text text-danger">ingrese una
+            sucursal</small>
         </div>
 
         <div class="form-group">
@@ -30,13 +31,16 @@
           <small *ngIf="precio_accesorio.invalid && precio_accesorio.touched" class="form-text text-danger">ingrese
             debe ingresar un precio</small>
         </div>
-        <button type="submit" class="btn btn-success btn-sm">Registrar </button>
-        <button class="btn btn-warning btn-sm">Editar </button>
-        <button class="btn btn-danger btn-sm">Eliminar </button>
+        <button [disabled]="seleccion" type="submit" class="btn btn-success btn-sm m-1">Registrar </button>
+        <button [disabled]="!seleccion" (click)="actualizarAccesorio(form)" class="btn btn-warning btn-sm m-1">Editar
+        </button>
       </form>
+
     </div>
     <div class="col-xl-8">
-      <app-tarifas-accesorios-list></app-tarifas-accesorios-list>
+      <app-tarifas-accesorios-list (seleccionAccesorio)="accesorio = $event; seleccion = true"
+        (quitarSeleccion)="accesorio = $event; seleccion = false">
+      </app-tarifas-accesorios-list>
     </div>
   </div>
 </div>

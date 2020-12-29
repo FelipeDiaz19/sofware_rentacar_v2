@@ -5,8 +5,7 @@ import { Usuario } from 'src/app/models/usuarios'
 import { environment } from 'src/environments/environment'
 @Component({
   selector: 'app-auth',
-  templateUrl: './auth.component.html',
-  styleUrls: ['./auth.component.css']
+  template: ' <br> <br> <br> <div class="text-center"><div class="spinner-border" role="status"><span class="sr-only">Loading...</span></div><h6>validando usuario...</h6></div>',
 })
 export class AuthComponent implements OnInit {
 
@@ -20,8 +19,8 @@ export class AuthComponent implements OnInit {
   }
 
   buscarUsuario() {
-    const { id, token } = this.route.snapshot.params;
-    this.auth.login(id, token).subscribe((usuario: Usuario) => {
+    const { token } = this.route.snapshot.params;
+    this.auth.login(token).subscribe((usuario: Usuario) => {
       this.usuario = usuario;
       this.router.navigate(["/home"]);
     }, (error) => {

@@ -10,7 +10,7 @@ export class AuthService {
 
   userToken: string;
   usuario: Usuario = new Usuario();
-
+  existe: boolean = false;
 
   constructor(private http: HttpClient) {
     this.usuario.nombre_usuario = "cargando..."

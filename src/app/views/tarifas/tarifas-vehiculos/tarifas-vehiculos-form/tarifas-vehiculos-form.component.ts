@@ -10,22 +10,15 @@ export class TarifasVehiculosFormComponent implements OnInit {
 
 
   form: FormGroup;
-  anios: any[] = [];
+  vehiculos: any[] = [];
 
   constructor(private fb: FormBuilder) {
     this.generarFormulario();
-    this.cargarOlder();
   }
 
   ngOnInit(): void {
   }
 
-  cargarOlder(): void {
-    let n = new Date().getFullYear() + 1;
-    for (let i = n; i >= 1970; i--) {
-      this.anios.push(i);
-    }
-  }
 
 
   validarCampos(nombre: string): boolean {
@@ -34,9 +27,7 @@ export class TarifasVehiculosFormComponent implements OnInit {
 
   generarFormulario(): void {
     this.form = this.fb.group({
-      nombre_categoria: ['', Validators.required],
-      modelo_vehiculo: ['', Validators.required],
-      anio_vehiculo: ['', Validators.required],
+      vehiculo: ['', Validators.required],
       valor_diario_vehiculo: ['', Validators.required],
       valor_semanal_vehiculo: ['', Validators.required],
       valor_quincenal_vehiculo: ['', Validators.required],

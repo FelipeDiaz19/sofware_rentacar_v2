@@ -4,7 +4,7 @@ import { Routes } from '@angular/router';
 
 
 export const tarifas_routes: Routes = [
-  /*   { path: '**', pathMatch: 'full', redirectTo: 'tarifasVehiculos' },  */
+  { path: '', component: TarifasVehiculosFormComponent },
   { path: 'tarifasVehiculos', component: TarifasVehiculosFormComponent },
   { path: 'tarifasAccesorios', component: TarifasAccesoriosFormComponent }
 ];

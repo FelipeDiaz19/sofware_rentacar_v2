@@ -17,10 +17,14 @@ export class AuthGuard implements CanActivate {
 
     if (this.auth.estadoSesion()) {
       return true;
-    } else {
-      window.location.href = `${environment.indexUrl}`;
-      return false;
     }
+
+
+    //elimina todo y redirecciona
+    localStorage.removeItem("usertoken");
+    localStorage.removeItem("usuario");
+    window.location.href = `${environment.indexUrl}`;
+    return false;
   }
 
 }

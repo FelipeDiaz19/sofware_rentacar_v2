@@ -1,6 +1,4 @@
 import { Router } from '@angular/router';
-import { Sucursal } from './../../../models/sucursales';
-
 import { Component, OnInit } from '@angular/core';
 
 @Component({

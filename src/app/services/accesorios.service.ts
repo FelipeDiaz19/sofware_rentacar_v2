@@ -21,7 +21,7 @@ export class AccesoriosService {
 
 
   create(ACCESORIO: Accesorio) {
-    return this.http.post(`${environment.apiUrl}accesorios/registrarAccesorio`, ACCESORIO);
+    return this.http.post(`${environment.apiUrl}accesorios/registrarAccesorio`, ACCESORIO)
   }
 
 

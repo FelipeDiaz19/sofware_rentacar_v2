@@ -4,7 +4,7 @@ import { Accesorio } from 'src/app/models/accesorios';
 import { SucursalesService } from 'src/app/services/sucursales.service';
 import { Sucursal } from 'src/app/models/sucursales';
 import { AccesoriosService } from 'src/app/services/accesorios.service';
-import Swal from 'sweetalert2';
+import { AlertHelper } from 'src/app/helpers/alert.helper';
 
 @Component({
   selector: 'app-tarifas-accesorios-form',
@@ -14,19 +14,15 @@ import Swal from 'sweetalert2';
 export class TarifasAccesoriosFormComponent implements OnInit {
 
   seleccion: boolean = false;
-
   accesorio: Accesorio = new Accesorio();
   sucursales: Sucursal[] = [];
 
-
-  constructor(private sucursalService: SucursalesService, private accesorioService: AccesoriosService) {
-
-  }
+  constructor(private sucursalService: SucursalesService, private _accesorio: AccesoriosService, private alert: AlertHelper) { }
 
 
   buscarSucursales() {
-    this.sucursalService.getSucursales().subscribe((sucursales: Sucursal[]) => {
-      this.sucursales = sucursales;
+    this.sucursalService.getSucursales().subscribe(response => {
+      this.sucursales = response.data;
     })
   }
 
@@ -43,23 +39,13 @@ export class TarifasAccesoriosFormComponent implements OnInit {
       return;
     }
     this.accesorio = FORM.value;
-    this.loadAlert();
-    this.accesorioService.create(this.accesorio).subscribe(response => {
-      if (response["success"]) {
-        Swal.fire({
-          title: "Accesorio registrado!",
-          text: `accesorio :${response["data"].nombre_accesorio}`,
-          icon: "success"
-        });
-        this.accesorio = new Accesorio();
-        FORM.reset();
-      } else {
-        Swal.fire({
-          title: "Ah ocurrido un error",
-          icon: "error"
-        })
-      }
+    // this.alert.loadingAlert();
+    this._accesorio.create(this.accesorio).subscribe(response => {
+      this.alert.createAlert(response.msg)
+      this.accesorio = new Accesorio();
+      FORM.reset();
     })
+
   }
 
   actualizarAccesorio(FORM: NgForm) {
@@ -69,14 +55,9 @@ export class TarifasAccesoriosFormComponent implements OnInit {
       })
       return;
     }
-    this.loadAlert()
-    this.accesorioService.put(FORM.value, this.accesorio.id_accesorio).subscribe(response => {
-      console.log(response);
-      Swal.fire({
-        title: "Accesorio actualizado!",
-        text: `accesorio :${FORM.value.nombre_accesorio}`,
-        icon: "success"
-      });
+    //this.alert.loadingAlert()
+    this._accesorio.put(FORM.value, this.accesorio.id_accesorio).subscribe(response => {
+      this.alert.updateAlert(response.msg);
       this.accesorio = new Accesorio();
       this.seleccion = false;
       FORM.reset();
@@ -85,14 +66,6 @@ export class TarifasAccesoriosFormComponent implements OnInit {
 
 
 
-  loadAlert() {
-    Swal.fire({
-      title: 'Espere',
-      text: 'Guardando informacion',
-      icon: 'info',
-      allowOutsideClick: false
-    })
-    Swal.showLoading();
-  }
+
 
 }

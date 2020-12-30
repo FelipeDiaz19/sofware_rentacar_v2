@@ -1,7 +1,5 @@
-import { Rol } from './roles';
-import { Sucursal } from './sucursales';
-
-export class Usuario {
+import { Sequelize } from "./sequelize";
+export class Usuario extends Sequelize {
   id_usuario: number;
   estado_usuario: number;
   nombre_usuario: string;
@@ -9,7 +7,4 @@ export class Usuario {
   clave_usuario: string;
   id_rol: number;
   id_sucursal: number;
-  role: Rol;
-  sucursale: Sucursal;
-  userAt: string;
 }

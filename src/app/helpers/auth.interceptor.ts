@@ -11,11 +11,11 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private auth: AuthService) { }
+  constructor(private _auth: AuthService) { }
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    const token = this.auth.userToken;
-    const userName = this.auth.usuario.nombre_usuario;
+    const token = this._auth.userToken;
+    const userName = this._auth.usuario.nombre_usuario;
     if (token && userName) {
       request = request.clone({
         setHeaders: {

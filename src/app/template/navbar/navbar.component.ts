@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment';
 export class NavbarComponent implements OnInit {
 
 
-  constructor(public auth: AuthService) {
+  constructor(public _auth: AuthService) {
   }
 
   ngOnInit(): void {
@@ -21,8 +21,7 @@ export class NavbarComponent implements OnInit {
 
 
   salir() {
-    this.auth.cerrarSesion();
-    window.location.href = `${environment.indexUrl}`;
+    this._auth.cerrarSesion();
   }
 
   irPerfil() {

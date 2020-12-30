@@ -31,15 +31,17 @@
           <small *ngIf="precio_accesorio.invalid && precio_accesorio.touched" class="form-text text-danger">ingrese
             debe ingresar un precio</small>
         </div>
-        <button [disabled]="seleccion" type="submit" class="btn btn-success btn-sm m-1">Registrar </button>
+        <button [disabled]="seleccion" type="submit" class="btn btn-success btn-sm m-1">Registrar accesorio</button>
         <button [disabled]="!seleccion" (click)="actualizarAccesorio(form)" class="btn btn-warning btn-sm m-1">Editar
+          accesorio
         </button>
       </form>
 
     </div>
     <div class="col-xl-8">
-      <app-tarifas-accesorios-list (seleccionAccesorio)="accesorio = $event; seleccion = true"
-        (quitarSeleccion)="accesorio = $event; seleccion = false">
+      <app-tarifas-accesorios-list [accesorioList]="accesorio" [seleccionList]="seleccion"
+        (seleccionAccesorio)="accesorio = $event; seleccion = true"
+        (quitarSeleccion)="accesorio = $event; seleccion = false;">
       </app-tarifas-accesorios-list>
     </div>
   </div>

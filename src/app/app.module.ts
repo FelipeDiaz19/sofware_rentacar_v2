@@ -3,13 +3,15 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
-
+import { NgSelect2Module } from 'ng-select2';
 
 //rutas
 import { AppRoutingModule } from './app-routing.module';
 
 //helpers
 import { AuthInterceptor } from './helpers/auth.interceptor';
+import { ErrorInterceptor } from './helpers/error.interceptor';
+import { AlertHelper } from './helpers/alert.helper';
 
 // servicios
 import { AuthService } from './services/auth.service';
@@ -53,6 +55,7 @@ import { TarifasAccesoriosListComponent } from './views/tarifas/tarifas-accesori
   imports: [
     BrowserModule,
     AgGridModule.withComponents([]),
+    NgSelect2Module,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
@@ -60,7 +63,8 @@ import { TarifasAccesoriosListComponent } from './views/tarifas/tarifas-accesori
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    AuthService, SucursalesService, AccesoriosService],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    AuthService, SucursalesService, AccesoriosService, AlertHelper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,16 +2,15 @@
   <br><br>
 
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="guardar()">
-    <h5>Registrar categoria de vehiculos</h5>
+    <h5>Asignar tarifa a los vehiculos</h5>
     <br>
     <div class="form-row">
       <div class="form-group col-xl-12">
-        <label for="vehiculo">año vehiculos </label>
-        <select [class.is-invalid]="validarCampos('vehiculo')" class="form-control" formControlName="vehiculo">
-          <option *ngFor="let vehiculo of vehiculos" [value]="vehiculo">{{vehiculo.patente_vehiculo}}</option>
-        </select>
+        <ag-grid-angular #agGrid style="width:100%; height: 200px;" class="ag-theme-alpine" [rowData]="rowData"
+          [columnDefs]="columnDefs" rowSelection="multiple">
+        </ag-grid-angular>
+        <br><br>
       </div>
-
       <div class="form-group col-xl-3">
         <label for="valor_diario_vehiculo">valor neto diario (1 dia) </label>
         <input [class.is-invalid]="validarCampos('valor_diario_vehiculo')" type="number" class="form-control"
@@ -33,7 +32,8 @@
           formControlName="valor_mensual_vehiculo">
       </div>
     </div>
-    <button type="submit" class="btn btn-success btn-sm">Registrar </button>
+    <button type="submit" class="btn btn-success btn-sm m-1">Registrar Tarifa</button>
+    <button class="btn btn-warning btn-sm m-1">Editar Tarifa</button>
   </form>
 
 

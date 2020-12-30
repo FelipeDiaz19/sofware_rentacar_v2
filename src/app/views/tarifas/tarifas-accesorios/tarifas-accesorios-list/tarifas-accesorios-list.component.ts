@@ -1,20 +1,22 @@
-import Swal from 'sweetalert2';
-import { Component, OnInit, ViewChild, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnChanges, SimpleChanges, } from '@angular/core';
 import { AccesoriosService } from 'src/app/services/accesorios.service';
 import { Accesorio } from 'src/app/models/accesorios';
 import { AgGridAngular } from 'ag-grid-angular';
-
+import { AlertHelper } from 'src/app/helpers/alert.helper';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-tarifas-accesorios-list',
   templateUrl: './tarifas-accesorios-list.component.html',
   styleUrls: ['./tarifas-accesorios-list.component.css']
 })
-export class TarifasAccesoriosListComponent implements OnInit {
+export class TarifasAccesoriosListComponent implements OnInit, OnChanges {
   @ViewChild('agGrid') agGrid: AgGridAngular;
+  @Input() accesorioList: Accesorio;
+  @Input() seleccionList: Accesorio;
+
   @Output() seleccionAccesorio = new EventEmitter<Accesorio>();
   @Output() quitarSeleccion = new EventEmitter<Accesorio>();
-
 
   accesorios: Accesorio[] = [];
   accesorio: Accesorio;
@@ -29,16 +31,26 @@ export class TarifasAccesoriosListComponent implements OnInit {
     { headerName: 'usuario', field: 'userAt', sortable: true, filter: true },
   ];
 
+  constructor(private _accesorio: AccesoriosService, private alert: AlertHelper) { }
 
-
-  constructor(private accesorioService: AccesoriosService) { }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (!this.seleccionList) {
+      this.buscarAccesorios();
+    }
+  }
 
   ngOnInit(): void {
     this.buscarAccesorios();
   }
 
   buscarAccesorios() {
-    this.rowData = this.accesorioService.getAll();
+    this._accesorio.getAll().subscribe(response => {
+      response.data.map((accesorio: Accesorio) => {
+        accesorio.createdAt = moment(accesorio.createdAt).format("DD/MM/YYYY, h:mm:ss a");
+      })
+      this.accesorios = response.data;
+      this.rowData = this.accesorios;
+    })
   }
 
 
@@ -46,11 +58,7 @@ export class TarifasAccesoriosListComponent implements OnInit {
   seleccionarColumna() {
     const selectedNodes = this.agGrid.api.getSelectedNodes();
     if (selectedNodes.length == 0) {
-      Swal.fire({
-        title: "falta seleccionar columna",
-        text: "debe seleccionar un elemento",
-        icon: "warning"
-      })
+      this.alert.warningAlert("falta seleccionar columna", "debe seleccionar un elemento");
       return;
     }
     this.accesorio = selectedNodes[0].data;

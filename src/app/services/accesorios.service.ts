@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, } from '@angular/common/http';
-import { Accesorio } from '../models/accesorios';
+import { Accesorio, RequestResponse } from '../models';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
+import { Observable } from 'rxjs';
 //import 'moment/locale/es';
 
 
@@ -20,29 +21,24 @@ export class AccesoriosService {
   }
 
 
-  create(ACCESORIO: Accesorio) {
-    return this.http.post(`${environment.apiUrl}accesorios/registrarAccesorio`, ACCESORIO)
+  create(ACCESORIO: Accesorio): Observable<RequestResponse> {
+    return this.http.post<RequestResponse>(`${environment.apiUrl}accesorios/registrarAccesorio`, ACCESORIO);
   }
 
 
-  getAll() {
-    return this.http.get(`${environment.apiUrl}accesorios/cargarAccesorios`).pipe(map((response: any) => {
-      response.data.map(item => {
-        item.createdAt = moment(item.createdAt).format("DD/MM/YYYY, h:mm:ss a");
-      })
-      this.accesorios = response.data;
-      return this.accesorios;
-    }));
+
+  getAll(): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}accesorios/cargarAccesorios`);
   }
 
 
-  getOne(ID: Number) {
-    return this.http.get(`${environment.apiUrl}accesorios/buscarAccesorio/${ID}`);
+  getOne(ID: Number): Observable<RequestResponse> {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}accesorios/buscarAccesorio/${ID}`);
   }
 
 
-  put(ACCESORIO: Accesorio, ID: Number) {
-    return this.http.put(`${environment.apiUrl}accesorios/editarAccesorio/${ID}`, ACCESORIO);
+  put(ACCESORIO: Accesorio, ID: Number): Observable<RequestResponse> {
+    return this.http.put<RequestResponse>(`${environment.apiUrl}accesorios/editarAccesorio/${ID}`, ACCESORIO);
   }
 
 

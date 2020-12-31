@@ -16,7 +16,9 @@ export class SucursalesService {
   }
 
 
-  getSucursales(): Observable<RequestResponse> {
-    return this.http.get<RequestResponse>(`${environment.apiUrl}sucursales/cargarSucursales`);
+  getAll(): Observable<Sucursal[]> {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}sucursales/cargarSucursales`).pipe(map((response: RequestResponse) => {
+      return this.sucursales = response.data;
+    }));
   }
 }

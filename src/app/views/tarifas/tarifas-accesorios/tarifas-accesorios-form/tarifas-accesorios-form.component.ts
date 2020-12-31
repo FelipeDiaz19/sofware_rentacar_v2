@@ -1,3 +1,4 @@
+import { RequestResponse } from './../../../../models/requestResponse';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Accesorio } from 'src/app/models/accesorios';
@@ -17,12 +18,13 @@ export class TarifasAccesoriosFormComponent implements OnInit {
   accesorio: Accesorio = new Accesorio();
   sucursales: Sucursal[] = [];
 
-  constructor(private sucursalService: SucursalesService, private _accesorio: AccesoriosService, private alert: AlertHelper) { }
+
+  constructor(private sucursalService: SucursalesService, private accesorioService: AccesoriosService, private alert: AlertHelper) { }
 
 
   buscarSucursales() {
-    this.sucursalService.getSucursales().subscribe(response => {
-      this.sucursales = response.data;
+    this.sucursalService.getAll().subscribe((data: Sucursal[]) => {
+      this.sucursales = data;
     })
   }
 
@@ -40,7 +42,7 @@ export class TarifasAccesoriosFormComponent implements OnInit {
     }
     this.accesorio = FORM.value;
     // this.alert.loadingAlert();
-    this._accesorio.create(this.accesorio).subscribe(response => {
+    this.accesorioService.create(this.accesorio).subscribe((response: RequestResponse) => {
       this.alert.createAlert(response.msg)
       this.accesorio = new Accesorio();
       FORM.reset();
@@ -56,7 +58,7 @@ export class TarifasAccesoriosFormComponent implements OnInit {
       return;
     }
     //this.alert.loadingAlert()
-    this._accesorio.put(FORM.value, this.accesorio.id_accesorio).subscribe(response => {
+    this.accesorioService.put(FORM.value, this.accesorio.id_accesorio).subscribe((response: RequestResponse) => {
       this.alert.updateAlert(response.msg);
       this.accesorio = new Accesorio();
       this.seleccion = false;

@@ -1,3 +1,6 @@
+import { RequestResponse } from './../../../../models/requestResponse';
+import { TarifasVehiculosService } from './../../../../services/tarifas-vehiculos.service';
+import { TarifaVehiculo } from './../../../../models/tarifasVehiculos';
 import { AlertHelper } from 'src/app/helpers/alert.helper';
 import { VehiculosService } from './../../../../services/vehiculos.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -14,22 +17,28 @@ import { AgGridAngular } from 'ag-grid-angular';
 export class TarifasVehiculosFormComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridAngular;
 
-  vehiculos: Vehiculo[] = [];
+  vehiculosSeleccion: Vehiculo[] = [];
+  tarifaVehiculo: TarifaVehiculo = new TarifaVehiculo();
   form: FormGroup;
   rowData: any;
+  defaultColDef = {
+    sortable: true,
+    resizable: true,
+    filter: true,
+    headerClass: 'btn-dark',
 
+  };
   columnDefs = [
-    { headerName: 'patente', field: 'patente_vehiculo', sortable: true, filter: true, checkboxSelection: true },
-    { headerName: 'marca', field: 'marca_vehiculo', sortable: true, filter: true },
-    { headerName: 'tipo', field: 'tipo_vehiculo', sortable: true, filter: true },
-    { headerName: 'modelo', field: 'modelo_vehiculo', sortable: true, filter: true },
-    { headerName: 'año', field: 'año_vehiculo', sortable: true, filter: true },
-    { headerName: 'Region', field: 'regione.nombre_region', sortable: true, filter: true },
-
+    { headerName: 'patente', field: 'patente_vehiculo', checkboxSelection: true },
+    { headerName: 'marca', field: 'marca_vehiculo', },
+    { headerName: 'tipo', field: 'tipo_vehiculo', },
+    { headerName: 'modelo', field: 'modelo_vehiculo', },
+    { headerName: 'año', field: 'año_vehiculo', },
+    { headerName: 'Region', field: 'regione.nombre_region', },
   ];
 
 
-  constructor(private fb: FormBuilder, private _vehiculo: VehiculosService, private _alert: AlertHelper) {
+  constructor(private fb: FormBuilder, private _vehiculo: VehiculosService, private _alert: AlertHelper, private _tarifasV: TarifasVehiculosService) {
     this.generarFormulario();
   }
 
@@ -38,46 +47,49 @@ export class TarifasVehiculosFormComponent implements OnInit {
   }
 
   cargarVehiculos() {
-    this._vehiculo.getVehiculos().subscribe(response => {
-      this.vehiculos = response.data;
-      this.rowData = this.vehiculos;
+    this._vehiculo.getAll().subscribe((data: Vehiculo[]) => {
+      this.rowData = data;
     })
   }
 
 
 
   validarCampos(nombre: string): boolean {
-    return this.form.get(nombre) && this.form.get(nombre).touched;
+    return this.form.get(nombre).invalid && this.form.get(nombre).touched;
   }
 
   generarFormulario(): void {
     this.form = this.fb.group({
-      valor_diario_vehiculo: ['', Validators.required],
-      valor_semanal_vehiculo: ['', Validators.required],
-      valor_quincenal_vehiculo: ['', Validators.required],
-      valor_mensual_vehiculo: ['', Validators.required]
+      valor_neto_diario: ['', Validators.required],
+      valor_neto_semanal: ['', Validators.required],
+      valor_neto_quincenal: ['', Validators.required],
+      valor_neto_mensual: ['', Validators.required]
     })
   }
 
   guardar() {
     const selectedNodes = this.agGrid.api.getSelectedNodes();
-    console.log(this.form.invalid);
-    console.log(this.form);
-
     if (this.form.invalid) {
       return Object.values(this.form.controls).forEach(control => {
         control.markAllAsTouched();
       })
     }
-
     if (selectedNodes.length === 0) {
       this._alert.warningAlert("seleccione un vehiculo!", "se debe seleccionar un vehiculo");
       return;
     }
+    this.vehiculosSeleccion.length = 0;
+    this.tarifaVehiculo = this.form.value;
+    selectedNodes.forEach((item) => {
+      this.vehiculosSeleccion.push(item.data);
+    })
 
-    //extraer datos y corregir los input denegados del form
-    console.log(selectedNodes);
-
+    this._tarifasV.createList(this.tarifaVehiculo, this.vehiculosSeleccion).subscribe((response: RequestResponse) => {
+      this._alert.createAlert(response.msg);
+      this.tarifaVehiculo = new TarifaVehiculo();
+      this.form.reset();
+      this.cargarVehiculos();
+    });
   }
 
 

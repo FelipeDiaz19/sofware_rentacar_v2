@@ -3,7 +3,7 @@ import { AccesoriosService } from 'src/app/services/accesorios.service';
 import { Accesorio } from 'src/app/models/accesorios';
 import { AgGridAngular } from 'ag-grid-angular';
 import { AlertHelper } from 'src/app/helpers/alert.helper';
-import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-tarifas-accesorios-list',
@@ -21,35 +21,37 @@ export class TarifasAccesoriosListComponent implements OnInit, OnChanges {
   accesorios: Accesorio[] = [];
   accesorio: Accesorio;
   rowData: any;
+  defaultColDef = {
+    sortable: true,
+    resizable: true,
+    filter: true,
+    headerClass: 'btn-dark',
 
+  };
   columnDefs = [
-    { headerName: 'codigo', field: 'id_accesorio', sortable: true, filter: true, checkboxSelection: true },
-    { headerName: 'Sucursal', field: 'sucursale.nombre_sucursal', sortable: true, filter: true },
-    { headerName: 'nombre accesorio', field: 'nombre_accesorio', sortable: true, filter: true },
-    { headerName: 'precio neto', field: 'precio_accesorio', sortable: true, filter: true },
-    { headerName: 'fecha registro', field: 'createdAt', sortable: true, filter: true },
-    { headerName: 'usuario', field: 'userAt', sortable: true, filter: true },
+    { headerName: 'codigo', width: 130, field: 'id_accesorio', checkboxSelection: true },
+    { headerName: 'Sucursal', width: 160, field: 'sucursale.nombre_sucursal', },
+    { headerName: 'nombre accesorio', width: 250, field: 'nombre_accesorio', },
+    { headerName: 'precio neto', width: 140, field: 'precio_accesorio', },
+    { headerName: 'fecha registro', width: 300, field: 'createdAt', },
+    { headerName: 'usuario', field: 'userAt', },
   ];
 
   constructor(private _accesorio: AccesoriosService, private alert: AlertHelper) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!this.seleccionList) {
-      this.buscarAccesorios();
+      this.cargarAccesorios();
     }
   }
 
   ngOnInit(): void {
-    this.buscarAccesorios();
+    this.cargarAccesorios();
   }
 
-  buscarAccesorios() {
-    this._accesorio.getAll().subscribe(response => {
-      response.data.map((accesorio: Accesorio) => {
-        accesorio.createdAt = moment(accesorio.createdAt).format("DD/MM/YYYY, h:mm:ss a");
-      })
-      this.accesorios = response.data;
-      this.rowData = this.accesorios;
+  cargarAccesorios() {
+    this._accesorio.getAll().subscribe((data: Accesorio[]) => {
+      this.rowData = data;
     })
   }
 

@@ -1,4 +1,5 @@
-import { AuthService } from 'src/app/services/auth.service';
+import { map } from 'rxjs/operators';
+import { Vehiculo } from 'src/app/models';
 import { Injectable } from '@angular/core';
 import { RequestResponse } from '../models';
 import { HttpClient, } from '@angular/common/http';
@@ -10,18 +11,16 @@ import { Observable } from 'rxjs';
 })
 export class VehiculosService {
 
+  vehiculos: Vehiculo[] = [];
 
-  constructor(private http: HttpClient, private _auth: AuthService) { }
+
+  constructor(private http: HttpClient) { }
 
 
-  getVehiculos(): Observable<RequestResponse> {
-    return this.http.get<RequestResponse>(`${environment.apiUrl}vehiculos/cargarTotalVehiculos`);
+  getAll(): Observable<Vehiculo[]> {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}vehiculos/cargarTotalVehiculos`).pipe(map((response: RequestResponse) => {
+      return this.vehiculos = response.data;
+    }))
   }
-
-  /*  getVehiculos():Observable<Vehiculo> {
-     return this.http.get<RequestResponse>(`${environment.apiUrl}vehiculos/cargarVehiculos`).pipe(map((response: RequestResponse) => {
-       return this.vehiculos = response.data;
-     }))
-   } */
 
 }

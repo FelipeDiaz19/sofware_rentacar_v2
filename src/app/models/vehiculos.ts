@@ -11,7 +11,7 @@ export class Vehiculo extends Sequelize {
   tipo_vehiculo: string;
   color_vehiculo: string;
   compra_vehiculo: string;
-  fechaCompra_vehiculo: string;
+  fechaCompra_vehiculo: Date;
   año_vehiculo: number;
   foto_vehiculo: string;
   Tmantencion_vehiculo: number;

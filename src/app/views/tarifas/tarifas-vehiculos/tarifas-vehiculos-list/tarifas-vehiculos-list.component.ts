@@ -10,7 +10,7 @@ import { TarifasVehiculosService } from 'src/app/services/tarifas-vehiculos.serv
 })
 export class TarifasVehiculosListComponent implements OnInit, OnChanges {
   @ViewChild('agGrid') agGrid: AgGridAngular;
-  @Input() tarifaVehiculoList: TarifaVehiculo;
+  @Input() tarifaVehiculoList: TarifaVehiculo[];
 
   public defaultColDef: any;
   public rowData: any = [];
@@ -25,7 +25,7 @@ export class TarifasVehiculosListComponent implements OnInit, OnChanges {
     };
     this.columnDefs = [
       {
-        headerName: "Vehiculo", checkboxSelection: true, marryChildren: true, headerClass: 'btn-dark', children: [
+        headerName: "Vehiculos", checkboxSelection: true, marryChildren: true, headerClass: 'btn-dark', children: [
           { headerName: 'patente', field: 'vehiculo.patente_vehiculo', },
           { headerName: 'marca', field: 'vehiculo.marca_vehiculo', },
           { headerName: 'modelo', field: 'vehiculo.modelo_vehiculo', },
@@ -34,28 +34,28 @@ export class TarifasVehiculosListComponent implements OnInit, OnChanges {
         ]
       },
       {
-        headerName: 'Diario (1 dia)', marryChildren: true, headerClass: 'btn-danger', children: [
+        headerName: 'Precios diario (1 dia o mas)', marryChildren: true, headerClass: 'btn-danger', children: [
           { headerName: 'Valor neto', width: 140, field: 'valor_neto_diario' },
           { headerName: 'Iva', width: 120, field: 'valor_iva_diario' },
           { headerName: 'Total', width: 160, field: 'valor_total_diario' }
         ]
       },
       {
-        headerName: 'Semanal (7 dias)', marryChildren: true, headerClass: 'btn-success', children: [
+        headerName: 'Precios semanales (7 dias o mas)', marryChildren: true, headerClass: 'btn-success', children: [
           { headerName: 'Valor neto', width: 140, field: 'valor_neto_semanal' },
           { headerName: 'Iva', width: 120, field: 'valor_iva_semanal' },
           { headerName: 'Total', width: 160, field: 'valor_total_semanal' }
         ]
       },
       {
-        headerName: 'Quincenal (15 dias)', marryChildren: true, headerClass: 'btn-primary', children: [
+        headerName: 'Precios quincenales (15 dias o mas)', marryChildren: true, headerClass: 'btn-primary', children: [
           { headerName: 'Valor neto', width: 140, field: 'valor_neto_quincenal' },
           { headerName: 'Iva', width: 120, field: 'valor_iva_quincenal' },
           { headerName: 'Total', width: 160, field: 'valor_total_quincenal' }
         ]
       },
       {
-        headerName: 'Mensual (30 dias)', marryChildren: true, headerClass: 'btn-info', children: [
+        headerName: 'Precios mensuales (30 dias o mas)', marryChildren: true, headerClass: 'btn-info', children: [
           { headerName: 'Valor neto', width: 140, field: 'valor_neto_mensual' },
           { headerName: 'Iva', width: 120, field: 'valor_iva_mensual' },
           { headerName: 'Total', width: 160, field: 'valor_total_mensual' }

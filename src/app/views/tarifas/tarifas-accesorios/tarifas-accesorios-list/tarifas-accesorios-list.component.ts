@@ -63,14 +63,18 @@ export class TarifasAccesoriosListComponent implements OnInit, OnChanges {
       this.alert.warningAlert("falta seleccionar columna", "debe seleccionar un elemento");
       return;
     }
-    this.accesorio = selectedNodes[0].data;
-    this.seleccionAccesorio.emit(this.accesorio);
+    const id_accesorio = selectedNodes[0].data["id_accesorio"];
+    this._accesorio.getOne(id_accesorio).subscribe(request => {
+      this.accesorio = request.data;
+      this.seleccionAccesorio.emit(this.accesorio);
+    })
   }
 
 
   eliminarSeleccion() {
     this.quitarSeleccion.emit(new Accesorio());
   }
+
 
 
 

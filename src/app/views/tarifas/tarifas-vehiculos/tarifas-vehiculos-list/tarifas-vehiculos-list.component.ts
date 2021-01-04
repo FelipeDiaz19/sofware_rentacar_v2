@@ -1,3 +1,4 @@
+import { AlertHelper } from 'src/app/helpers/alert.helper';
 import { AgGridAngular } from 'ag-grid-angular';
 import { TarifaVehiculo } from './../../../../models/tarifasVehiculos';
 import { Component, OnInit, ViewChild, Input, OnChanges, SimpleChanges } from '@angular/core';
@@ -12,12 +13,13 @@ export class TarifasVehiculosListComponent implements OnInit, OnChanges {
   @ViewChild('agGrid') agGrid: AgGridAngular;
   @Input() tarifaVehiculoList: TarifaVehiculo[];
 
+  public tarifaVehiculo: TarifaVehiculo = new TarifaVehiculo();
   public defaultColDef: any;
   public rowData: any = [];
   public columnDefs: any = [];
 
 
-  constructor(private _tarifasVehiculo: TarifasVehiculosService) {
+  constructor(private _tarifasVehiculo: TarifasVehiculosService, private _alert: AlertHelper) {
     this.defaultColDef = {
       sortable: true,
       resizable: true,
@@ -25,7 +27,7 @@ export class TarifasVehiculosListComponent implements OnInit, OnChanges {
     };
     this.columnDefs = [
       {
-        headerName: "Vehiculos", checkboxSelection: true, marryChildren: true, headerClass: 'btn-dark', children: [
+        headerName: "Vehiculos", marryChildren: true, headerClass: 'btn-dark', children: [
           { headerName: 'patente', field: 'vehiculo.patente_vehiculo', },
           { headerName: 'marca', field: 'vehiculo.marca_vehiculo', },
           { headerName: 'modelo', field: 'vehiculo.modelo_vehiculo', },
@@ -84,7 +86,5 @@ export class TarifasVehiculosListComponent implements OnInit, OnChanges {
       this.rowData = data;
     })
   }
-
-
 
 }

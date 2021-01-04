@@ -18,6 +18,7 @@ export class TarifasVehiculosFormComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridAngular;
 
   vehiculosSeleccion: Vehiculo[] = [];
+  tarifasVehiculos: TarifaVehiculo[] = [];
   tarifaVehiculo: TarifaVehiculo = new TarifaVehiculo();
   form: FormGroup;
   rowData: any;
@@ -38,7 +39,7 @@ export class TarifasVehiculosFormComponent implements OnInit {
   ];
 
 
-  constructor(private fb: FormBuilder, private _vehiculo: VehiculosService, private _alert: AlertHelper, private _tarifasV: TarifasVehiculosService) {
+  constructor(private fb: FormBuilder, private _vehiculo: VehiculosService, private _alert: AlertHelper, private _tarifasVehiculo: TarifasVehiculosService) {
     this.generarFormulario();
   }
 
@@ -52,7 +53,9 @@ export class TarifasVehiculosFormComponent implements OnInit {
     })
   }
 
-
+  onFilterTextBoxChanged(text: string) {
+    this.agGrid.api.setQuickFilter(text);
+  }
 
   validarCampos(nombre: string): boolean {
     return this.form.get(nombre).invalid && this.form.get(nombre).touched;
@@ -78,15 +81,17 @@ export class TarifasVehiculosFormComponent implements OnInit {
       this._alert.warningAlert("seleccione un vehiculo!", "se debe seleccionar un vehiculo");
       return;
     }
-    this.vehiculosSeleccion.length = 0;
     this.tarifaVehiculo = this.form.value;
     selectedNodes.forEach((item) => {
-      this.vehiculosSeleccion.push(item.data);
-    })
-
-    this._tarifasV.createList(this.tarifaVehiculo, this.vehiculosSeleccion).subscribe((response: RequestResponse) => {
+      this.tarifasVehiculos.push({
+        ...this.tarifaVehiculo, patente_vehiculo: item.data["patente_vehiculo"]
+      })
+    });
+    this._tarifasVehiculo.createList(this.tarifasVehiculos).subscribe((response: RequestResponse) => {
       this._alert.createAlert(response.msg);
       this.tarifaVehiculo = new TarifaVehiculo();
+      this.tarifasVehiculos.length = 0;
+      this.vehiculosSeleccion.length = 0;
       this.form.reset();
       this.cargarVehiculos();
     });

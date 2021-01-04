@@ -1,6 +1,8 @@
 <br><br><br>
 <h5>Todos las tarifas disponibles</h5>
 <br>
+<input type="search" #buscar placeholder="filtrar..." (keyup.enter)="onFilterTextBoxChanged(buscar.value)"
+  class="form-control m-1 col-md-2" />
 <ag-grid-angular #agGrid style="width:100%; height: 600px;" class="ag-theme-alpine" [rowData]="rowData"
   [columnDefs]="columnDefs" [defaultColDef]="defaultColDef">
 </ag-grid-angular>

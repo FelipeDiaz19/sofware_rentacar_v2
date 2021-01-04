@@ -19,8 +19,8 @@ export class TarifasVehiculosService {
 
 
 
-  createList(TARIFAVEHICULO: TarifaVehiculo, LISTVEHICULO: Vehiculo[]): Observable<RequestResponse> {
-    return this.http.post<RequestResponse>(`${environment.apiUrl}tarifasVehiculos/registrarTarifa`, { TARIFAVEHICULO, LISTVEHICULO });
+  createList(TARIFASVEHICULOS: TarifaVehiculo[]): Observable<RequestResponse> {
+    return this.http.post<RequestResponse>(`${environment.apiUrl}tarifasVehiculos/registrarTarifa`, { TARIFASVEHICULOS });
   }
 
   getAll(): Observable<TarifaVehiculo[]> {

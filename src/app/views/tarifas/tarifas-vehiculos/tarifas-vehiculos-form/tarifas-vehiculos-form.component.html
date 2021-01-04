@@ -29,6 +29,8 @@
         <button type="submit" class="btn btn-success btn-sm m-1">Asignar tarifa</button>
       </div>
       <div class="col-xl-7">
+        <input type="search" #buscar placeholder="filtrar..." (keyup.enter)="onFilterTextBoxChanged(buscar.value)"
+          class="form-control m-1 col-md-4" />
         <ag-grid-angular #agGrid style="width:100%; height: 380px;" class="ag-theme-alpine" [rowData]="rowData"
           [columnDefs]="columnDefs" rowSelection="multiple" [animateRows]="true" [defaultColDef]="defaultColDef">
         </ag-grid-angular>

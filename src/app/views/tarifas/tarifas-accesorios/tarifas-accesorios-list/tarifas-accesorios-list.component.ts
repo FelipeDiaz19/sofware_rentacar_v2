@@ -35,9 +35,7 @@ export class TarifasAccesoriosListComponent implements OnInit, OnChanges {
     { headerName: 'precio neto', width: 140, field: 'precio_accesorio', },
     { headerName: 'precio iva', width: 120, field: 'iva_accesorio', },
     { headerName: 'precio bruto', width: 140, field: 'total_accesorio', },
-
     { headerName: 'fecha registro', width: 300, field: 'createdAt', },
-    { headerName: 'usuario', field: 'userAt', },
   ];
 
   constructor(private _accesorio: AccesoriosService, private alert: AlertHelper) { }

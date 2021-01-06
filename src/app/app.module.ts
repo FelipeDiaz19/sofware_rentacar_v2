@@ -24,13 +24,14 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './template/navbar/navbar.component';
 import { SidebarsComponent } from './template/sidebars/sidebars.component';
 import { HomeComponent } from './views/home/home.component';
-import { ItemComponent } from './views/item/item.component';
+
 import { AuthComponent } from './components/auth.component';
 import { TarifasHeaderComponent } from './views/tarifas/tarifas-header/tarifas-header.component';
 import { TarifasVehiculosFormComponent } from './views/tarifas/tarifas-vehiculos/tarifas-vehiculos-form/tarifas-vehiculos-form.component';
 import { TarifasVehiculosListComponent } from './views/tarifas/tarifas-vehiculos/tarifas-vehiculos-list/tarifas-vehiculos-list.component';
 import { TarifasAccesoriosFormComponent } from './views/tarifas/tarifas-accesorios/tarifas-accesorios-form/tarifas-accesorios-form.component';
 import { TarifasAccesoriosListComponent } from './views/tarifas/tarifas-accesorios/tarifas-accesorios-list/tarifas-accesorios-list.component';
+import { ArriendoHeaderComponent } from './views/arriendo/arriendo-header/arriendo-header.component';
 
 
 
@@ -43,7 +44,6 @@ import { TarifasAccesoriosListComponent } from './views/tarifas/tarifas-accesori
     AppComponent,
     NavbarComponent,
     SidebarsComponent,
-    ItemComponent,
     HomeComponent,
     AuthComponent,
     TarifasHeaderComponent,
@@ -51,6 +51,7 @@ import { TarifasAccesoriosListComponent } from './views/tarifas/tarifas-accesori
     TarifasVehiculosListComponent,
     TarifasAccesoriosFormComponent,
     TarifasAccesoriosListComponent,
+    ArriendoHeaderComponent,
   ],
   imports: [
     BrowserModule,

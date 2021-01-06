@@ -40,14 +40,21 @@ export class AccesoriosService {
     return this.http.get<RequestResponse>(`${environment.apiUrl}accesorios/cargarAccesorios`).pipe(map((response: RequestResponse) => {
       response.data.map((accesorio: any) => {
         accesorio.createdAt = moment(accesorio.createdAt).format("DD/MM/YYYY, h:mm:ss a");
+        accesorio.iva_accesorio = "$ " + this.formatter.format(this.calcularIva(accesorio.precio_accesorio));
+        accesorio.total_accesorio = "$ " + this.formatter.format(this.calcularBruto(accesorio.precio_accesorio));
         accesorio.precio_accesorio = "$ " + this.formatter.format(accesorio.precio_accesorio);
       })
       return this.accesorio = response.data;
     }))
   }
 
+  private calcularIva(NETO: number): number {
+    return NETO * 0.19;
+  }
 
-
+  private calcularBruto(NETO: number): number {
+    return NETO + NETO * 0.19;
+  }
 
 
 

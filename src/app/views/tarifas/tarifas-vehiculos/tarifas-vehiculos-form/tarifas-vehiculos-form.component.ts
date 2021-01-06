@@ -17,6 +17,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 export class TarifasVehiculosFormComponent implements OnInit {
   @ViewChild('agGrid') agGrid: AgGridAngular;
 
+  formatter = new Intl.NumberFormat("CL");
   vehiculosSeleccion: Vehiculo[] = [];
   tarifasVehiculos: TarifaVehiculo[] = [];
   tarifaVehiculo: TarifaVehiculo = new TarifaVehiculo();
@@ -95,6 +96,13 @@ export class TarifasVehiculosFormComponent implements OnInit {
       this.form.reset();
       this.cargarVehiculos();
     });
+  }
+
+  calcularIva(neto: number): string {
+    return "$ " + this.formatter.format(neto * 0.19);
+  }
+  calcularBruto(neto: number): string {
+    return "$ " + this.formatter.format(Number(neto) + Number(neto * 0.19));
   }
 
 

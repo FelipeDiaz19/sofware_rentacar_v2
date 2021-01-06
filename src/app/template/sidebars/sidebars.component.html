@@ -3,7 +3,25 @@
   <div class="row ">
 
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-      <div class="sidebar-sticky pt-3">
+      <div class="sidebar-sticky pt-1">
+        <ul class="nav flex-column">
+          <li class="nav-item" routerLinkActive="card">
+            <a class="nav-link" routerLinkActive="active" href="https://imlchile.cl:4200/ingresos/rentacar">
+              <i class="fas fa-cash-register"></i>
+              Ingresos arriendos
+            </a>
+          </li>
+        </ul>
+        <br>
+        <ul class="nav flex-column">
+          <li class="nav-item" routerLinkActive="card">
+            <a class="nav-link" routerLinkActive="active" href="https://imlchile.cl:4200/egresos/rentacar">
+              <i class="fas fa-cart-arrow-down"></i>
+              Egresos Rent a Car
+            </a>
+          </li>
+        </ul>
+        <br>
         <ul class="nav flex-column">
           <li class="nav-item" routerLinkActive="card">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['tarifas']">
@@ -15,15 +33,15 @@
         <br>
         <ul class="nav flex-column">
           <li class="nav-item" routerLinkActive="card">
-            <a class="nav-link" routerLinkActive="active" [routerLink]="['item']">
-              <i class="fas fa-beer"></i>
-              item 2
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['arriendos']">
+              <i class="fas fa-pen-square"></i>
+              Modificar arriendos
             </a>
           </li>
         </ul>
+        <br>
       </div>
     </nav>
-
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
       <router-outlet></router-outlet>

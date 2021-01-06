@@ -13,7 +13,7 @@ import { AlertHelper } from 'src/app/helpers/alert.helper';
   styleUrls: ['./tarifas-accesorios-form.component.css']
 })
 export class TarifasAccesoriosFormComponent implements OnInit {
-
+  formatter = new Intl.NumberFormat("CL");
   seleccion: boolean = false;
   accesorio: Accesorio = new Accesorio();
   sucursales: Sucursal[] = [];
@@ -66,6 +66,12 @@ export class TarifasAccesoriosFormComponent implements OnInit {
     })
   }
 
+  calcularIva(neto: number = 0): string {
+    return "$ " + this.formatter.format(neto * 0.19);
+  }
+  calcularBruto(neto: number = 0): string {
+    return "$ " + this.formatter.format(Number(neto) + Number(neto * 0.19));
+  }
 
 
 

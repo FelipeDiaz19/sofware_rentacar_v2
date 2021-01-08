@@ -22,6 +22,7 @@
     "ag-grid-angular": "^24.1.0",
     "ag-grid-community": "^24.1.0",
     "bootstrap": "^4.5.3",
+    "cors": "^2.8.5",
     "datatables.net": "^1.10.23",
     "datatables.net-dt": "^1.10.23",
     "jquery": "^3.5.1",

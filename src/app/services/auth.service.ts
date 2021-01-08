@@ -19,6 +19,8 @@ export class AuthService {
   }
 
   public login(TOKEN: string): Observable<Usuario> {
+    localStorage.removeItem("usertoken");
+    localStorage.removeItem("usuario");
     const headers = new HttpHeaders({ "usertoken": TOKEN });
     return this.http.get<RequestResponse>(`${environment.apiUrl}usuarios/validarUsuario/${TOKEN}`, { headers }).pipe(map((response: RequestResponse) => {
       this.usuario = response.data;

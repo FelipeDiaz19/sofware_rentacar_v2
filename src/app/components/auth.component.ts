@@ -24,7 +24,8 @@ export class AuthComponent implements OnInit {
       this.usuario = usuario;
       this.router.navigate(["/home"]);
     }, (error) => {
-      window.location.href = `${environment.indexUrl}`;
+      console.log("error en el componente auth");
+     // window.location.href = `${environment.indexUrl}`;
     })
   }
 

@@ -41,7 +41,7 @@ export class TarifasAccesoriosFormComponent implements OnInit {
       return;
     }
     this.accesorio = FORM.value;
-    // this.alert.loadingAlert();
+    this.alert.loadingAlert();
     this.accesorioService.create(this.accesorio).subscribe((response: RequestResponse) => {
       this.alert.createAlert(response.msg)
       this.accesorio = new Accesorio();
@@ -57,7 +57,7 @@ export class TarifasAccesoriosFormComponent implements OnInit {
       })
       return;
     }
-    //this.alert.loadingAlert()
+    this.alert.loadingAlert()
     this.accesorioService.put(FORM.value, this.accesorio.id_accesorio).subscribe((response: RequestResponse) => {
       this.alert.updateAlert(response.msg);
       this.accesorio = new Accesorio();

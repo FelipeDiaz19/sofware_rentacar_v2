@@ -19,9 +19,14 @@ export class SucursalListComponent implements OnInit {
     this.cargarSucursal();
   }
 
-  cargarSucursal() {
+  cargarSucursal(): void {
     this._sucursal.getAll().subscribe((sucursales: Sucursal[]) => {
       this.sucursales = sucursales;
+      console.log(this.sucursales)
     })
   }
+
+
+
+
 }

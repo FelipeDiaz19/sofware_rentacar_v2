@@ -1,4 +1,4 @@
-<h3>Total <small>sucursales</small></h3>
+<h3>Todas las sucursales</h3>
 <br>
 <div style="overflow-x: scroll;">
     <table class="table table-striped table-bordered" style="width:100%">
@@ -7,7 +7,6 @@
                 <th scope="col">Sucursal</th>
                 <th scope="col">Region</th>
                 <th scope="col">Cantidad Arriendos</th>
-                <th scope="col">Cantidad clientes</th>
                 <th scope="col">fecha de creacion</th>
                 <th></th>
             </tr>
@@ -16,9 +15,9 @@
             <tr *ngFor="let sucursal of sucursales">
                 <th>{{sucursal.nombre_sucursal}}</th>
                 <td>{{sucursal["regione"].nombre_region}}</td>
-                <td>@</td>
-                <td>@</td>
+                <td>{{sucursal["arriendos"].length}}</td>
                 <td>{{sucursal.createdAt}}</td>
+                <td></td>
             </tr>
         </tbody>
         <tfoot class="btn-dark">
@@ -26,7 +25,6 @@
                 <th scope="col">Sucursal</th>
                 <th scope="col">Region</th>
                 <th scope="col">Cantidad Arriendos</th>
-                <th scope="col">Cantidad clientes</th>
                 <th scope="col">fecha de creacion</th>
                 <th></th>
             </tr>

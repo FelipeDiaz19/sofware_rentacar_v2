@@ -88,6 +88,7 @@ export class TarifasVehiculosFormComponent implements OnInit {
         ...this.tarifaVehiculo, patente_vehiculo: item.data["patente_vehiculo"]
       })
     });
+    this._alert.loadingAlert();
     this._tarifasVehiculo.createList(this.tarifasVehiculos).subscribe((response: RequestResponse) => {
       this._alert.createAlert(response.msg);
       this.tarifaVehiculo = new TarifaVehiculo();

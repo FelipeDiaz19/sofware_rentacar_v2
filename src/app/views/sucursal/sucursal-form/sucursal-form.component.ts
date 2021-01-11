@@ -48,6 +48,7 @@ export class SucursalFormComponent implements OnInit {
       })
     }
     this.sucursal = this.form.value;
+    this._alert.loadingAlert();
     this._sucursal.create(this.sucursal).subscribe((response: RequestResponse) => {
       this._alert.createAlert(response.msg)
       this.sucursal = new Sucursal();

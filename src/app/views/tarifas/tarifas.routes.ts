@@ -1,6 +1,6 @@
+import { Routes } from '@angular/router';
 import { TarifasVehiculosFormComponent } from './tarifas-vehiculos/tarifas-vehiculos-form/tarifas-vehiculos-form.component';
 import { TarifasAccesoriosFormComponent } from './tarifas-accesorios/tarifas-accesorios-form/tarifas-accesorios-form.component';
-import { Routes } from '@angular/router';
 
 
 export const tarifas_routes: Routes = [

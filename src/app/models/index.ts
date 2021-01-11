@@ -6,6 +6,6 @@ export { Sucursal } from './sucursales';
 export { Usuario } from './usuarios';
 export { Vehiculo } from './vehiculos';
 export { TarifaVehiculo } from './tarifasVehiculos';
-
+export { Region } from './regiones';
 
 

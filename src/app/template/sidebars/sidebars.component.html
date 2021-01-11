@@ -37,6 +37,16 @@
         <ul class="nav flex-column" routerLinkActive="card">
           <br>
           <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLink]="['sucursales']">
+              <i class="fas fa-laptop-house"></i>
+              Administracion sucursal
+            </a>
+          </li>
+          <br>
+        </ul>
+        <ul class="nav flex-column" routerLinkActive="card">
+          <br>
+          <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['arriendos']">
               <i class="fas fa-pen-square"></i>
               Modificar arriendos
@@ -44,7 +54,7 @@
           </li>
           <br>
         </ul>
-        <br>
+
       </div>
     </nav>
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">

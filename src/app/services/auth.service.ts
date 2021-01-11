@@ -47,9 +47,9 @@ export class AuthService {
   }
 
   public cerrarSesion(): void {
-    //localStorage.removeItem("usertoken");
-   // localStorage.removeItem("usuario");
-   // window.location.href = `${environment.indexUrl}`;
+    localStorage.removeItem("usertoken");
+    localStorage.removeItem("usuario");
+    window.location.href = `${environment.indexUrl}`;
   }
 
   private guardarSesion(TOKEN: string, USUARIO: Usuario): void {

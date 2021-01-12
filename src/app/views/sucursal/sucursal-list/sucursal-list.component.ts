@@ -10,6 +10,7 @@ import { SucursalesService } from 'src/app/services/sucursales.service';
 export class SucursalListComponent implements OnInit {
 
   sucursales: Sucursal[] = [];
+  dtoSucursal: any = [];
 
   constructor(private _sucursal: SucursalesService) {
 
@@ -21,8 +22,26 @@ export class SucursalListComponent implements OnInit {
 
   cargarSucursal(): void {
     this._sucursal.getAll().subscribe((sucursales: Sucursal[]) => {
+      sucursales.map(sucursal => {
+        let finalizados = 0;
+        let activos = 0;
+        let anulados = 0;
+        sucursal["arriendos"].forEach(arriendo => {
+          if (arriendo.estado_arriendo == "FINALIZADO") {
+            finalizados++;
+          }
+          if (arriendo.estado_arriendo == "ANULADO") {
+            anulados++
+          }
+          if (arriendo.estado_arriendo == "ACTIVO") {
+            activos++
+          }
+        })
+        sucursal["cant_finalizados"] = finalizados;
+        sucursal["cant_activos"] = activos;
+        sucursal["cant_anulados"] = anulados;
+      })
       this.sucursales = sucursales;
-      console.log(this.sucursales)
     })
   }
 

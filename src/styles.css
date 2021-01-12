@@ -31,14 +31,14 @@ a:hover {
 .loader {
   margin-left: auto;
   margin-right: auto;
-  border: 106px solid #f3f3f3;
+  border: 76px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 106px solid rgb(22, 119, 46);
-  border-right: 106px solid rgba(0, 0, 0, 0.208);
-  border-bottom: 106px solid red;
-  border-left: 106px solid rgb(104, 97, 97);
-  width: 520px;
-  height: 520px;
+  border-top: 76px solid rgb(22, 119, 46);
+  border-right: 76px solid rgba(0, 0, 0, 0.208);
+  border-bottom: 76px solid red;
+  border-left: 76px solid rgb(104, 97, 97);
+  width: 350px;
+  height: 350px;
   -webkit-animation: spin 2s linear infinite;
   animation: spin 2s linear infinite;
 }

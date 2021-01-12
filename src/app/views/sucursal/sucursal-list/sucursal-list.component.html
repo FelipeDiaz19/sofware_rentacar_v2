@@ -6,27 +6,33 @@
             <tr>
                 <th scope="col">Sucursal</th>
                 <th scope="col">Region</th>
-                <th scope="col">Cantidad Arriendos</th>
-                <th scope="col">fecha de creacion</th>
-                <th></th>
+                <th scope="col"> Arriendos totales</th>
+                <th scope="col"> Arriendos Finalizados</th>
+                <th scope="col"> Arriendos Activos</th>
+                <th scope="col"> Arriendos Anulados</th>
+                <th scope="col">fecha de registro</th>
             </tr>
         </thead>
-        <tbody id="vehiculos">
+        <tbody>
             <tr *ngFor="let sucursal of sucursales">
-                <th>{{sucursal.nombre_sucursal}}</th>
+                <td>{{sucursal.nombre_sucursal}}</td>
                 <td>{{sucursal["regione"].nombre_region}}</td>
                 <td>{{sucursal["arriendos"].length}}</td>
+                <td>{{sucursal["cant_finalizados"]}}</td>
+                <td>{{sucursal["cant_activos"]}}</td>
+                <td>{{sucursal["cant_anulados"]}}</td>
                 <td>{{sucursal.createdAt}}</td>
-                <td></td>
             </tr>
         </tbody>
         <tfoot class="btn-dark">
             <tr>
                 <th scope="col">Sucursal</th>
                 <th scope="col">Region</th>
-                <th scope="col">Cantidad Arriendos</th>
-                <th scope="col">fecha de creacion</th>
-                <th></th>
+                <th scope="col"> Arriendos totales</th>
+                <th scope="col"> Arriendos Finalizados</th>
+                <th scope="col"> Arriendos Activos</th>
+                <th scope="col"> Arriendos Anulados</th>
+                <th scope="col">fecha de registro</th>
             </tr>
         </tfoot>
     </table>

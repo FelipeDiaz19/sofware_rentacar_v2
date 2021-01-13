@@ -30,21 +30,21 @@ import { SidebarsComponent } from './template/sidebars/sidebars.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthComponent } from './components/auth.component';
 
-
 import { TarifasHeaderComponent } from './views/tarifas/tarifas-header/tarifas-header.component';
 import { TarifasVehiculosFormComponent } from './views/tarifas/tarifas-vehiculos/tarifas-vehiculos-form/tarifas-vehiculos-form.component';
 import { TarifasVehiculosListComponent } from './views/tarifas/tarifas-vehiculos/tarifas-vehiculos-list/tarifas-vehiculos-list.component';
 import { TarifasAccesoriosFormComponent } from './views/tarifas/tarifas-accesorios/tarifas-accesorios-form/tarifas-accesorios-form.component';
 import { TarifasAccesoriosListComponent } from './views/tarifas/tarifas-accesorios/tarifas-accesorios-list/tarifas-accesorios-list.component';
 
-
-
-import { ArriendoHeaderComponent } from './views/arriendo/arriendo-header/arriendo-header.component';
-
-
 import { SucursalHeaderComponent } from './views/sucursal/sucursal-header/sucursal-header.component';
 import { SucursalListComponent } from './views/sucursal/sucursal-list/sucursal-list.component';
 import { SucursalFormComponent } from './views/sucursal/sucursal-form/sucursal-form.component';
+
+import { ArriendoHeaderComponent } from './views/arriendo/arriendo-header/arriendo-header.component';
+import { ArriendoFormComponent } from './views/arriendo/arriendo-form/arriendo-form.component';
+import { ArriendoOptionComponent } from './views/arriendo/arriendo-option/arriendo-option.component';
+import { ArriendoService } from './services/arriendo.service';
+
 
 
 
@@ -68,6 +68,8 @@ import { SucursalFormComponent } from './views/sucursal/sucursal-form/sucursal-f
     SucursalHeaderComponent,
     SucursalListComponent,
     SucursalFormComponent,
+    ArriendoFormComponent,
+    ArriendoOptionComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +82,9 @@ import { SucursalFormComponent } from './views/sucursal/sucursal-form/sucursal-f
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    AuthService, SucursalesService, TarifasVehiculosService, VehiculosService, RegionesService, AccesoriosService, AlertHelper],
+    AuthService, SucursalesService, TarifasVehiculosService,
+    VehiculosService, RegionesService, AccesoriosService,
+    AlertHelper, ArriendoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

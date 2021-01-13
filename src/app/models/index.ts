@@ -7,5 +7,5 @@ export { Usuario } from './usuarios';
 export { Vehiculo } from './vehiculos';
 export { TarifaVehiculo } from './tarifasVehiculos';
 export { Region } from './regiones';
-
+export { Arriendo } from './arriendos';
 

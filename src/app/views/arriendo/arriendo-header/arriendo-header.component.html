@@ -1,7 +1,7 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item "><a [routerLink]="['home']" style='color: rgb(0, 0, 0);;'>Administracion</a>
+            <li class="breadcrumb-item"><a (click)="inicio()" href="#" style='color: rgb(0, 0, 0);'>Administracion</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">Modificar arriendos</li>
         </ol>
@@ -10,7 +10,10 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-md-3"></div>
+    <div class="col-md-3 text-center">
+        <br><br>
+        <h4 *ngIf="arriendo">Arriendo Nº {{arriendo.id_arriendo}}</h4>
+    </div>
     <div class="col-md-6">
         <h6 style="color: rgb(255, 0, 0)">Solo es posible modificar arriendos si el contrato aún no ha sido firmado.
         </h6>
@@ -24,13 +27,20 @@
                 aria-label="Example text with button addon" aria-describedby="button-addon1">
         </div>
     </div>
-    <div class="col-md-3"></div>
+    <div class="col-md-3">
+        <br><br>
+        <button *ngIf="arriendo" (click)="guardarCambios()" class="btn btn-success" type="button"
+            id="button-addon1">Guardar
+            cambios</button>
+    </div>
 </div>
-
-
+<br>
+<br>
 <div>
     <div class="tab-content" id="myTabContent">
-
+        <!-- *ngIf="arriendo" -->
+        <app-arriendo-form *ngIf="arriendo" [arriendo]="arriendo" (sendForm)="formArriendo  = $event">
+        </app-arriendo-form>
     </div>
     <br><br><br>
 </div>

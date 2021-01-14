@@ -1,1 +1,46 @@
-<p>arriendo-form works!</p>
+<div class="card">
+    <form autocomplete="off" [formGroup]="form" class="card-body" (change)="onChange()">
+        <div class=" form-row">
+            <div class="form-group col-lg-6">
+                <label for="ciudadEntrega_arriendo">sucursal entrega</label>
+                <input [class.is-invalid]="validarCampos('ciudadEntrega_arriendo')"
+                    formControlName="ciudadEntrega_arriendo" type="text" class="form-control">
+            </div>
+            <div class="form-group col-lg-6">
+                <label for="ciudadRecepcion_arriendo">sucursal recepcion</label>
+                <input [class.is-invalid]="validarCampos('ciudadRecepcion_arriendo')"
+                    formControlName="ciudadRecepcion_arriendo" type="text" class="form-control">
+            </div>
+            <div class="form-group col-lg-5">
+                <label for="fechaEntrega_arriendo">Fecha Inicio</label>
+                <input [class.is-invalid]="validarCampos('fechaEntrega_arriendo')" (change)="calcularDias()"
+                    formControlName="fechaEntrega_arriendo" type="datetime-local" class="form-control">
+            </div>
+            <div class="form-group col-lg-5">
+                <label for="fechaRecepcion_arriendo">Fecha Fin</label>
+                <input [class.is-invalid]="validarCampos('fechaRecepcion_arriendo')" (change)="calcularDias()"
+                    formControlName="fechaRecepcion_arriendo" type="datetime-local" class="form-control"
+                    [value]="arriendo.fechaRecepcion_arriendo">
+            </div>
+            <div class="form-group col-lg-2">
+                <label for="diasActuales_arriendo">Dias</label>
+                <input [class.is-invalid]="validarCampos('diasActuales_arriendo')"
+                    [ngModel]="arriendo.diasActuales_arriendo" formControlName="diasActuales_arriendo" type="number"
+                    class="form-control" min="0">
+            </div>
+            <div class="form-group col-lg-4">
+                <label for="kilometrosEntrada_arriendo">kilometros inicio</label>
+                <input [class.is-invalid]="validarCampos('kilometrosEntrada_arriendo')"
+                    formControlName="kilometrosEntrada_arriendo" type="text" class="form-control">
+            </div>
+            <div class="form-group col-lg-8">
+                <label for="inputEditarVehiculoArriendo">Vehiculo</label>
+                <select class="custom-select " style="width: 100%;" formControlName="patente_vehiculo">
+                    <option *ngFor="let v of vehiculos" [value]="v.patente_vehiculo">Patente: {{v.patente_vehiculo}}
+                        modelo:
+                        {{v.marca_vehiculo}} {{v.modelo_vehiculo}} {{v['año_vehiculo']}} </option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ArriendoOptionComponent } from './arriendo-option.component';
+import { ArriendoTipoComponent } from './arriendo-tipo.component';
 
-describe('ArriendoOptionComponent', () => {
-  let component: ArriendoOptionComponent;
-  let fixture: ComponentFixture<ArriendoOptionComponent>;
+describe('ArriendoTipoComponent', () => {
+  let component: ArriendoTipoComponent;
+  let fixture: ComponentFixture<ArriendoTipoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ArriendoOptionComponent ]
+      declarations: [ ArriendoTipoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArriendoOptionComponent);
+    fixture = TestBed.createComponent(ArriendoTipoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

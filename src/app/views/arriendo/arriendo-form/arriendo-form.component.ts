@@ -1,9 +1,8 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import * as moment from 'moment';
-import { AlertHelper } from 'src/app/helpers/alert.helper';
 import { Arriendo, Vehiculo } from 'src/app/models';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
+import * as moment from 'moment';
 
 
 @Component({
@@ -18,7 +17,7 @@ export class ArriendoFormComponent implements OnInit {
 
   vehiculos: Vehiculo[] = [];
 
-  constructor(private fb: FormBuilder, private helperAlert: AlertHelper, private serviceVehiculo: VehiculosService) {
+  constructor(private fb: FormBuilder, private serviceVehiculo: VehiculosService) {
   }
 
   validarCampos(nombre: string): boolean {

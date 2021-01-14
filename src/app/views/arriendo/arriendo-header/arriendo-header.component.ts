@@ -25,17 +25,16 @@ export class ArriendoHeaderComponent implements OnInit {
   }
 
   buscarArriendo(ID: number): void {
+    this.arriendo = null;
     this.serviceArriendo.findArriendo(ID).subscribe((response: RequestResponse) => {
       if (!response.success) {
         this.helperAlert.warningAlert(response.msg, 'Nº de folio incorrecto');
-        this.arriendo = null;
         return;
       }
       if (response.data) {
         const estado = response.data.estado_arriendo;
         if (estado !== 'PENDIENTE' && estado !== 'CONFIRMADO') {
           this.helperAlert.warningAlert('Este arriendo ya esta firmado!', 'Solo es posible modificar arriendos si el contrato aún no ha sido firmado');
-          this.arriendo = null;
           return;
         }
       }
@@ -46,7 +45,7 @@ export class ArriendoHeaderComponent implements OnInit {
   guardarCambios(): void {
     console.log(this.formArriendo);
 
-    //enviar todo al servidor
+    // enviar todo al servidor
   }
 
 

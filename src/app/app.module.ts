@@ -3,17 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 
-//rutas
+// rutas
 import { AppRoutingModule } from './app-routing.module';
 
-//helpers
+// helpers
 import { AuthInterceptor } from './helpers/auth.interceptor';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { AlertHelper } from './helpers/alert.helper';
 
 // servicios
 import { AuthService } from './services/auth.service';
-
 
 // components
 import { AppComponent } from './app.component';
@@ -22,17 +21,10 @@ import { SidebarsComponent } from './template/sidebars/sidebars.component';
 import { HomeComponent } from './views/home/home.component';
 import { AuthComponent } from './components/auth.component';
 
-
 // modules
 import { ArriendoModule } from './views/arriendo/arriendo.module';
 import { TarifasModule } from './views/tarifas/tarifas.module';
 import { SucursalModule } from './views/sucursal/sucursal.module';
-
-
-
-
-
-
 
 
 @NgModule({

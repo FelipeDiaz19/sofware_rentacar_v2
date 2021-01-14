@@ -39,8 +39,17 @@
 <div>
     <div class="tab-content" id="myTabContent">
         <!-- *ngIf="arriendo" -->
-        <app-arriendo-form *ngIf="arriendo" [arriendo]="arriendo" (sendForm)="formArriendo  = $event">
-        </app-arriendo-form>
+        <div class="row">
+            <div class="col-md-12">
+                <app-arriendo-form *ngIf="arriendo" [arriendo]="arriendo" (sendForm)="formArriendo  = $event">
+                </app-arriendo-form>
+                <br>
+            </div>
+            <div class="col-md-6">
+                <app-arriendo-tipo *ngIf="arriendo" [arriendo]="arriendo"></app-arriendo-tipo>
+            </div>
+            <div class="col-md-6"></div>
+        </div>
     </div>
     <br><br><br>
 </div>

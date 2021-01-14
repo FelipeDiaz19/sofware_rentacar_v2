@@ -10,7 +10,7 @@ import { tarifas_routes } from './views/tarifas/tarifas.routes';
 import { sucursales_routes } from './views/sucursal/sucursal.routes';
 
 const routes: Routes = [
-  { path: "auth/:token", component: AuthComponent },
+  { path: 'auth/:token', component: AuthComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'tarifas', component: TarifasHeaderComponent, canActivate: [AuthGuard], children: tarifas_routes },
   { path: 'sucursales', component: SucursalHeaderComponent, canActivate: [AuthGuard], children: sucursales_routes },

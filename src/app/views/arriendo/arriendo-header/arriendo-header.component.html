@@ -15,13 +15,13 @@
         <h4 *ngIf="arriendo">Arriendo Nº {{arriendo.id_arriendo}}</h4>
     </div>
     <div class="col-md-6">
-        <h6 style="color: rgb(255, 0, 0)">Solo es posible modificar arriendos si el contrato aún no ha sido firmado.
+        <h6 style="color: rgb(255, 0, 0)">Solo es posible modificar el arriendo si aún no han sido despachado.
         </h6>
         <br>
         <div class="input-group">
             <div class="input-group-prepend">
-                <button (click)="buscarArriendo(inputBuscar.value)" class="btn btn-outline-secondary" type="button"
-                    id="button-addon1">Buscar arriendo </button>
+                <button (click)="buscarArriendo(inputBuscar.value)" class="btn btn-outline-secondary"
+                    type="button">Buscar arriendo </button>
             </div>
             <input type="number" #inputBuscar class="form-control" placeholder="ingrese Nº de Folio"
                 aria-label="Example text with button addon" aria-describedby="button-addon1">
@@ -29,8 +29,7 @@
     </div>
     <div class="col-md-3">
         <br><br>
-        <button *ngIf="arriendo" (click)="guardarCambios()" class="btn btn-success" type="button"
-            id="button-addon1">Guardar
+        <button *ngIf="arriendo" (click)="confirmarCambios(0)" class="btn btn-success" type="button">Guardar
             cambios</button>
     </div>
 </div>
@@ -38,17 +37,33 @@
 <br>
 <div>
     <div class="tab-content" id="myTabContent">
-        <!-- *ngIf="arriendo" -->
+        <button *ngIf="arriendo" class="btn btn-outline-primary m-1" type="button" (click)="confirmarCambios(1)">
+            <i class="fas fa-upload"></i> Reiniciar
+            vista documentos requeridos</button>
+        <button *ngIf="arriendo" class="btn btn-outline-success m-1" type="button" (click)="confirmarCambios(2)"><i
+                class="fas fa-money-bill-wave"></i> Reiniciar
+            vista pago arriendo</button>
+
+        <button *ngIf="arriendo" class="btn btn-outline-info m-1" type="button" (click)="confirmarCambios(3)"><i
+                class='fas fa-feather-alt'></i> Reiniciar
+            vista firmar arriendo</button>
+
         <div class="row">
             <div class="col-md-12">
+                <br>
                 <app-arriendo-form *ngIf="arriendo" [arriendo]="arriendo" (sendForm)="formArriendo  = $event">
                 </app-arriendo-form>
                 <br>
             </div>
-            <div class="col-md-6">
-                <app-arriendo-tipo *ngIf="arriendo" [arriendo]="arriendo"></app-arriendo-tipo>
+            <div class="col-md-4">
+                <app-arriendo-tipo *ngIf="arriendo" [arriendo]="arriendo" (sendOptionTipo)="cambiarTipo = $event"
+                    (sendOptionER)="empresaRemplazo=$event">
+                </app-arriendo-tipo>
             </div>
-            <div class="col-md-6"></div>
+            <div class="col-md-8">
+                <app-arriendo-contacto *ngIf="arriendo" [contacto]="arriendo['contacto']"
+                    (sendForm)="formContacto = $event"></app-arriendo-contacto>
+            </div>
         </div>
     </div>
     <br><br><br>

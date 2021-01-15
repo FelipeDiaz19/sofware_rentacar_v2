@@ -5,14 +5,13 @@ import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 import { Observable } from 'rxjs';
-//import 'moment/locale/es';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccesoriosService {
-  formatter = new Intl.NumberFormat("CL");
+  formatter = new Intl.NumberFormat('CL');
   accesorio: Accesorio;
   accesorios: Accesorio[] = [];
 
@@ -25,12 +24,12 @@ export class AccesoriosService {
     return this.http.post<RequestResponse>(`${environment.apiUrl}accesorios/registrarAccesorio`, ACCESORIO);
   }
 
-  put(ACCESORIO: Accesorio, ID: Number): Observable<RequestResponse> {
+  put(ACCESORIO: Accesorio, ID: number): Observable<RequestResponse> {
     return this.http.put<RequestResponse>(`${environment.apiUrl}accesorios/editarAccesorio/${ID}`, ACCESORIO);
   }
 
 
-  getOne(ID: Number): Observable<RequestResponse> {
+  getOne(ID: number): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${environment.apiUrl}accesorios/buscarAccesorio/${ID}`);
   }
 
@@ -39,13 +38,13 @@ export class AccesoriosService {
   getAll(): Observable<Accesorio[]> {
     return this.http.get<RequestResponse>(`${environment.apiUrl}accesorios/cargarAccesorios`).pipe(map((response: RequestResponse) => {
       response.data.map((accesorio: any) => {
-        accesorio.createdAt = moment(accesorio.createdAt).format("DD/MM/YYYY, h:mm:ss a");
-        accesorio.iva_accesorio = "$ " + this.formatter.format(this.calcularIva(accesorio.precio_accesorio));
-        accesorio.total_accesorio = "$ " + this.formatter.format(this.calcularBruto(accesorio.precio_accesorio));
-        accesorio.precio_accesorio = "$ " + this.formatter.format(accesorio.precio_accesorio);
-      })
+        accesorio.createdAt = moment(accesorio.createdAt).format('DD/MM/YYYY, h:mm:ss a');
+        accesorio.iva_accesorio = '$ ' + this.formatter.format(this.calcularIva(accesorio.precio_accesorio));
+        accesorio.total_accesorio = '$ ' + this.formatter.format(this.calcularBruto(accesorio.precio_accesorio));
+        accesorio.precio_accesorio = '$ ' + this.formatter.format(accesorio.precio_accesorio);
+      });
       return this.accesorio = response.data;
-    }))
+    }));
   }
 
   private calcularIva(NETO: number): number {

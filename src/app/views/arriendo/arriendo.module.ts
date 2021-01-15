@@ -6,18 +6,21 @@ import { ArriendoService } from 'src/app/services/arriendo.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArriendoTipoComponent } from './arriendo-tipo/arriendo-tipo.component';
+import { EmpresaRemplazoService } from 'src/app/services/empresa-remplazo.service';
+import { ArriendoContactoComponent } from './arriendo-contacto/arriendo-contacto.component';
+import { ContactoService } from 'src/app/services/contacto.service';
 
 
 
 @NgModule({
   declarations: [
-    ArriendoFormComponent, ArriendoHeaderComponent, ArriendoTipoComponent
+    ArriendoFormComponent, ArriendoHeaderComponent, ArriendoTipoComponent, ArriendoContactoComponent
   ],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,
   ],
   providers: [
-    ArriendoService, AppRoutingModule
+    ArriendoService, EmpresaRemplazoService, ContactoService, AppRoutingModule
   ]
 })
 export class ArriendoModule { }

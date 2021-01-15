@@ -17,4 +17,26 @@ export class ArriendoService {
     return this.http.get<RequestResponse>(`${environment.apiUrl}arriendos/buscarArriendo/${ID}`);
   }
 
+  modificarTipo(ID: number, tipo: number, empresaRemplazo: string): Observable<RequestResponse> {
+    return this.http.post<RequestResponse>(`${environment.apiUrl}arriendos/cambiarTipoArriendo`, { ID, tipo, empresaRemplazo });
+  }
+
+  modificarInfo(arriendo: Arriendo): Observable<RequestResponse> {
+    return this.http.post<RequestResponse>(`${environment.apiUrl})arriendos/editarArriendo`, arriendo);
+  }
+
+  rollbackVistaFirma(ID: number): Observable<RequestResponse> {
+    return this.http.delete<RequestResponse>(`${environment.apiUrl}arriendos/reiniciarVistaFirma/${ID}`);
+  }
+
+  rollbackVistaPago(ID: number): Observable<RequestResponse> {
+    return this.http.delete<RequestResponse>(`${environment.apiUrl}arriendos/reiniciarVistaPago/${ID}`);
+
+  }
+
+  rollbackVistarequisitos(ID: number): Observable<RequestResponse> {
+    return this.http.delete<RequestResponse>(`${environment.apiUrl}arriendos/reiniciarVistaRequisito/${ID}`);
+
+  }
+
 }

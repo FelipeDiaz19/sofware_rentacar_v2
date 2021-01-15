@@ -1,5 +1,4 @@
 <div class="card">
-    <label></label>
     <div class="card-body">
         <h4>Cambiar el tipo de arriendo</h4>
         <br>
@@ -7,11 +6,24 @@
             <div class="form-group col-lg-12">
                 <label for="inputTipoArriendo">Tipo de arriendo</label>
                 <select [(value)]="arriendo.tipo_arriendo" #tipo_arriendo class="custom-select"
-                    (change)="onChangeTipo(tipo_arriendo.value)">
+                    (change)="onChangeTipo(tipo_arriendo.value);send()">
                     <option value="PARTICULAR">PARTICULAR</option>
                     <option value="REEMPLAZO">REEMPLAZO</option>
                     <option value="EMPRESA">EMPRESA</option>
                 </select>
+                <small *ngIf="options===0" class="form-text text-danger">no es posible realizar esta
+                    modificacion</small>
+                <small *ngIf="campoTipo" class="form-text text-success">se reiniciaran todas las vistas</small>
+            </div>
+
+            <div *ngIf="options===1" class="form-group col-lg-12">
+                <label for="inputEmpresaRemplazo">Elegir empresa de remplazo</label>
+                <select class="custom-select" [(ngModel)]="selectERemplazo" (change)="send()">
+                    <option *ngFor="let er of empresasRemplazo" [value]="er.codigo_empresaRemplazo">
+                        {{er.codigo_empresaRemplazo}}</option>
+                </select>
+                <small *ngIf="selectERemplazo===null" class="form-text text-danger">debe ingresar la empresa de
+                    remplazo</small>
             </div>
         </div>
     </div>

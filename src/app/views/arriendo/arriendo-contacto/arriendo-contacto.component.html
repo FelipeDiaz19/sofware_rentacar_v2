@@ -1,0 +1,38 @@
+<div class="card">
+    <form autocomplete="off" [formGroup]="form" class="card-body" (change)="onChange()">
+        <h4>Modificar los datos de contacto de emergencia</h4>
+        <br>
+        <div class="form-row">
+            <div class="form-group col-xl-6">
+                <label for="inputNombreContacto">Nombre completo </label>
+                <input maxLength="50" type="text" class="form-control"
+                    [class.is-invalid]="validarCampos('nombre_contacto')" formControlName="nombre_contacto">
+            </div>
+            <div class="form-group col-xl-6">
+                <label for="inputDomicilioContacto">Domicilio </label>
+                <input maxLength="50" type="text" class="form-control"
+                    [class.is-invalid]="validarCampos('domicilio_contacto')" formControlName="domicilio_contacto">
+            </div>
+            <div class="form-group col-xl-6">
+                <label for="inputNumeroCasaContacto">Numero casa </label>
+                <input maxLength="10" type="number" class="form-control"
+                    [class.is-invalid]="validarCampos('numeroCasa_contacto')" formControlName="numeroCasa_contacto">
+            </div>
+            <div class="form-group col-xl-6">
+                <label for="inputCiudadContacto">Ciudad </label>
+                <input maxLength="50" type="text" class="form-control"
+                    [class.is-invalid]="validarCampos('ciudad_contacto')" formControlName="ciudad_contacto">
+            </div>
+            <div class="form-group col-xl-6">
+                <label for="inputTelefonoContacto">Telefono </label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">+569</span>
+                    </div>
+                    <input maxLength="8" type="number" class="form-control"
+                        [class.is-invalid]="validarCampos('telefono_contacto')" formControlName="telefono_contacto">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

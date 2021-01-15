@@ -1,4 +1,4 @@
-import { Sequelize } from "./sequelize";
+import { Sequelize } from './sequelize';
 
 export class TarifaVehiculo extends Sequelize {
   id_tarifaVehiculo: number;

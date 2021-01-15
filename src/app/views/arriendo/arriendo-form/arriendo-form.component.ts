@@ -1,8 +1,9 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Arriendo, Vehiculo } from 'src/app/models';
+import { Arriendo, Sucursal, Vehiculo } from 'src/app/models';
 import { VehiculosService } from 'src/app/services/vehiculos.service';
 import * as moment from 'moment';
+import { SucursalesService } from 'src/app/services/sucursales.service';
 
 
 @Component({
@@ -13,32 +14,33 @@ import * as moment from 'moment';
 export class ArriendoFormComponent implements OnInit {
   @Input() arriendo: Arriendo = new Arriendo();
   @Output() sendForm = new EventEmitter<FormGroup>();
+
   form: FormGroup;
-
   vehiculos: Vehiculo[] = [];
+  sucursales: Sucursal[] = [];
+  campoDia: boolean;
+  campoVehiculo: boolean;
 
-  constructor(private fb: FormBuilder, private serviceVehiculo: VehiculosService) {
-  }
-
-  validarCampos(nombre: string): boolean {
-    return this.form.get(nombre).invalid && this.form.get(nombre).touched;
-  }
-
-  onChange(): void {
-    this.sendForm.emit(this.form);
+  constructor(private fb: FormBuilder, private serviceVehiculo: VehiculosService, private serviceSucursal: SucursalesService) {
   }
 
   ngOnInit(): void {
     this.generarFormulario();
     this.cargarVehiculos();
+    this.cargarSucursales();
   }
 
-  calcularDias(): void {
-    const fechaIni = new Date(this.form.value.fechaEntrega_arriendo);
-    const fechaFin = new Date(this.form.value.fechaRecepcion_arriendo);
-    const diasDif = fechaFin.getTime() - fechaIni.getTime();
-    const dias: number = Math.round(diasDif / (1000 * 60 * 60 * 24));
-    this.arriendo.diasActuales_arriendo = dias;
+  warningDia(): void {
+    this.campoDia = true;
+  }
+  warningVehiculo(): void {
+    this.campoVehiculo = true;
+  }
+
+  cargarSucursales(): void {
+    this.serviceSucursal.getAll().subscribe((data: Sucursal[]) => {
+      this.sucursales = data;
+    });
   }
 
   cargarVehiculos(): void {
@@ -58,5 +60,25 @@ export class ArriendoFormComponent implements OnInit {
       patente_vehiculo: [this.arriendo.patente_vehiculo, Validators.required],
     });
   }
+
+
+  validarCampos(nombre: string): boolean {
+    return this.form.get(nombre).invalid && this.form.get(nombre).touched;
+  }
+
+  onChange(): void {
+    this.sendForm.emit(this.form);
+  }
+
+  calcularDias(): void {
+    const fechaIni = new Date(this.form.value.fechaEntrega_arriendo);
+    const fechaFin = new Date(this.form.value.fechaRecepcion_arriendo);
+    const diasDif = fechaFin.getTime() - fechaIni.getTime();
+    const dias: number = Math.round(diasDif / (1000 * 60 * 60 * 24));
+    this.arriendo.diasActuales_arriendo = dias;
+    this.campoDia = true;
+  }
+
+
 
 }

@@ -29,7 +29,7 @@
     </div>
     <div class="col-md-3">
         <br><br>
-        <button *ngIf="arriendo" (click)="confirmarCambios(0)" class="btn btn-success" type="button">Guardar
+        <button *ngIf="arriendo" (click)="guardarCambios()" class="btn btn-success" type="button">Guardar
             cambios</button>
     </div>
 </div>
@@ -59,6 +59,9 @@
                 <app-arriendo-tipo *ngIf="arriendo" [arriendo]="arriendo" (sendOptionTipo)="cambiarTipo = $event"
                     (sendOptionER)="empresaRemplazo=$event">
                 </app-arriendo-tipo>
+                <br>
+                <app-arriendo-cliente hidden *ngIf="arriendo" [arriendo]="arriendo">
+                </app-arriendo-cliente>
             </div>
             <div class="col-md-8">
                 <app-arriendo-contacto *ngIf="arriendo" [contacto]="arriendo['contacto']"

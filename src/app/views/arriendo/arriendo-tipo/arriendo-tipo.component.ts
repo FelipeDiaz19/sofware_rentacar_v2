@@ -19,11 +19,15 @@ export class ArriendoTipoComponent implements OnInit {
   options: number = null;
   empresasRemplazo: EmpresaRemplazo[] = [];
   selectERemplazo: string = null;
+  empresaActual: string = '';
 
   constructor(private serviceERemplazo: EmpresaRemplazoService) { }
 
   ngOnInit(): void {
     this.cargarEmpresaRemplazo();
+    if (this.arriendo['remplazo']) {
+      this.empresaActual = `(empresa actual ${this.arriendo['remplazo']['codigo_empresaRemplazo']})`;
+    }
   }
 
   cargarEmpresaRemplazo(): void {
@@ -33,17 +37,25 @@ export class ArriendoTipoComponent implements OnInit {
   }
 
 
-  onChangeTipo(selecionTipo: string): void {
+  onChangeTipo(selecionTipo: string = null): void {
     if (this.arriendo.tipo_arriendo === selecionTipo) {
       this.options = null;
       this.campoTipo = false;
-
     }
+
+    if (this.arriendo['remplazo']) {
+      if (this.arriendo['remplazo']['codigo_empresaRemplazo'] !== this.selectERemplazo) {
+        console.log('cambia la empresa de remplazo');
+        this.options = 3;
+      }
+    }
+
     if (this.arriendo.tipo_arriendo === 'PARTICULAR' && selecionTipo === 'REEMPLAZO') {
       console.log('cambia de particular a remplazo');
       this.options = 1;
     }
     if (this.arriendo.tipo_arriendo === 'REEMPLAZO' && selecionTipo === 'PARTICULAR') {
+      console.log('cambia de reemplazo a particular');
       this.options = 2;
     }
     if (this.arriendo.tipo_arriendo === 'PARTICULAR' && selecionTipo === 'EMPRESA') {

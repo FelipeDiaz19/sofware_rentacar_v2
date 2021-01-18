@@ -76,7 +76,9 @@ export class ArriendoFormComponent implements OnInit {
     const diasDif = fechaFin.getTime() - fechaIni.getTime();
     const dias: number = Math.round(diasDif / (1000 * 60 * 60 * 24));
     this.arriendo.diasActuales_arriendo = dias;
+    this.form.get('diasActuales_arriendo').setValue(dias);
     this.campoDia = true;
+    this.onChange();
   }
 
 

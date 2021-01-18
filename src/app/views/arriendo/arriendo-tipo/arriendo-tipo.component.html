@@ -16,9 +16,11 @@
                 <small *ngIf="campoTipo" class="form-text text-success">se reiniciaran todas las vistas</small>
             </div>
 
-            <div *ngIf="options===1" class="form-group col-lg-12">
-                <label for="inputEmpresaRemplazo">Elegir empresa de remplazo</label>
-                <select class="custom-select" [(ngModel)]="selectERemplazo" (change)="send()">
+            <div *ngIf="options===1 || arriendo.tipo_arriendo==='REEMPLAZO'" class="form-group col-lg-12">
+                <label for="inputEmpresaRemplazo">Elegir empresa de remplazo </label>
+                <label for="inputEmpresaRemplazo">{{empresaActual}} </label>
+
+                <select class="custom-select" [(ngModel)]="selectERemplazo" (change)="onChangeTipo(); send()">
                     <option *ngFor="let er of empresasRemplazo" [value]="er.codigo_empresaRemplazo">
                         {{er.codigo_empresaRemplazo}}</option>
                 </select>

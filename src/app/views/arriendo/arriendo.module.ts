@@ -9,12 +9,13 @@ import { ArriendoTipoComponent } from './arriendo-tipo/arriendo-tipo.component';
 import { EmpresaRemplazoService } from 'src/app/services/empresa-remplazo.service';
 import { ArriendoContactoComponent } from './arriendo-contacto/arriendo-contacto.component';
 import { ContactoService } from 'src/app/services/contacto.service';
+import { ArriendoClienteComponent } from './arriendo-cliente/arriendo-cliente.component';
 
 
 
 @NgModule({
   declarations: [
-    ArriendoFormComponent, ArriendoHeaderComponent, ArriendoTipoComponent, ArriendoContactoComponent
+    ArriendoFormComponent, ArriendoHeaderComponent, ArriendoTipoComponent, ArriendoContactoComponent, ArriendoClienteComponent
   ],
   imports: [
     CommonModule, FormsModule, ReactiveFormsModule,

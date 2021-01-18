@@ -78,48 +78,36 @@ export class ArriendoHeaderComponent implements OnInit {
     const idEmpresa = this.empresaRemplazo;
     const tipoArriendo = this.cambiarTipo;
     this.helperAlert.loadingAlert();
-    this.serviceArriendo.modificarTipo(ID, tipoArriendo, idEmpresa).subscribe((response: RequestResponse) => {
-      if (response.success) {
-        this.helperAlert.updateAlert('cambios realizados!');
-        this.reiniciarVistaFirma();
-        this.reiniciarVistaRequisito();
-        this.reiniciarVistaPago();
-      }
-    });
+    this.serviceArriendo.modificarTipo(ID, tipoArriendo, idEmpresa).subscribe();
+    this.reiniciarVistaFirma();
+    this.reiniciarVistaPago();
+    this.reiniciarVistaRequisito();
   }
 
   modificarInfoArriendo(): void {
     const arriendoForm = this.formArriendo.value;
+    const id_arriendo = this.arriendo.id_arriendo;
     this.helperAlert.loadingAlert();
-    this.serviceArriendo.modificarInfo(arriendoForm).subscribe((response: RequestResponse) => {
-      if (response.success) {
-        this.reiniciarVistaFirma();
-        if (this.arriendo.diasActuales_arriendo !== arriendoForm.diasActuales_arriendo) {
-          this.reiniciarVistaPago();
-        }
-        if (this.arriendo.patente_vehiculo !== arriendoForm.arriendo.patente_vehiculo) {
-          this.reiniciarVistaPago();
-        }
-        this.helperAlert.updateAlert('cambios realizados!');
-      }
-    });
+    this.serviceArriendo.modificarInfo(id_arriendo, arriendoForm).subscribe();
+    this.reiniciarVistaFirma();
+    if (this.arriendo.diasActuales_arriendo !== arriendoForm.diasActuales_arriendo || this.arriendo.patente_vehiculo !== arriendoForm.patente_vehiculo) {
+      this.reiniciarVistaPago();
+    }
+
   }
 
   modificarContactoArriendo(): void {
     const contactoForm = this.formContacto.value;
+    const idContacto = this.arriendo['contacto']['id_contacto'];
     this.helperAlert.loadingAlert();
-    this.serviceContacto.modificarContacto(contactoForm).subscribe((response: RequestResponse) => {
-      if (response.success) {
-        this.reiniciarVistaFirma();
-        this.helperAlert.updateAlert('cambios realizados!');
-      }
-    });
+    this.serviceContacto.modificarContacto(idContacto, contactoForm).subscribe();
+    this.reiniciarVistaFirma();
   }
 
   confirmarCambios(option: number): void {
     Swal.fire({
       title: 'Estas seguro?',
-      text: 'esto provocara que se borren algunos datos!',
+      text: 'esto provocara que se modifiquen y/o borren algunos datos!',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Si, seguro',
@@ -127,9 +115,7 @@ export class ArriendoHeaderComponent implements OnInit {
       reverseButtons: true,
     }).then((result) => {
       if (result.isConfirmed) {
-        if (option === 0) {
-          this.guardarCambios();
-        }
+        this.helperAlert.loadingAlert();
         if (option === 1) {
           this.reiniciarVistaFirma();
           this.reiniciarVistaRequisito();
@@ -147,21 +133,36 @@ export class ArriendoHeaderComponent implements OnInit {
 
 
   reiniciarVistaRequisito(): void {
-    this.serviceArriendo.rollbackVistarequisitos(this.arriendo.id_arriendo).subscribe((response: RequestResponse) => {
-      console.log(response);
-    });
+    let idArriendo = this.arriendo.id_arriendo;
+    setTimeout(() => {
+      this.serviceArriendo.rollbackVistaRequisitos(idArriendo).subscribe((response: RequestResponse) => {
+        if (response.success) {
+          this.helperAlert.updateAlert('cambios realizados!');
+        }
+      });
+    }, 1000);
   }
 
   reiniciarVistaPago(): void {
-    this.serviceArriendo.rollbackVistaPago(this.arriendo.id_arriendo).subscribe((response: RequestResponse) => {
-      console.log(response);
-    });
+    let idArriendo = this.arriendo.id_arriendo;
+    setTimeout(() => {
+      this.serviceArriendo.rollbackVistaPago(idArriendo).subscribe((response: RequestResponse) => {
+        if (response.success) {
+          this.helperAlert.updateAlert('cambios realizados!');
+        }
+      });
+    }, 1000)
   }
 
   reiniciarVistaFirma(): void {
-    this.serviceArriendo.rollbackVistaPago(this.arriendo.id_arriendo).subscribe((response: RequestResponse) => {
-      console.log(response);
-    });
+    let idArriendo = this.arriendo.id_arriendo;
+    setTimeout(() => {
+      this.serviceArriendo.rollbackVistaFirma(idArriendo).subscribe((response: RequestResponse) => {
+        if (response.success) {
+          this.helperAlert.updateAlert('cambios realizados!');
+        }
+      });
+    }, 1000);
   }
 
 

@@ -18,25 +18,23 @@ export class ArriendoService {
   }
 
   modificarTipo(ID: number, tipo: number, empresaRemplazo: string): Observable<RequestResponse> {
-    return this.http.post<RequestResponse>(`${environment.apiUrl}arriendos/cambiarTipoArriendo`, { ID, tipo, empresaRemplazo });
+    return this.http.put<RequestResponse>(`${environment.apiUrl}arriendos/cambiarTipoArriendo/${ID}`, { tipo, empresaRemplazo });
   }
 
-  modificarInfo(arriendo: Arriendo): Observable<RequestResponse> {
-    return this.http.post<RequestResponse>(`${environment.apiUrl})arriendos/editarArriendo`, arriendo);
+  modificarInfo(ID: number, arriendo: Arriendo): Observable<RequestResponse> {
+    return this.http.put<RequestResponse>(`${environment.apiUrl}arriendos/editarArriendo/${ID}`, arriendo);
   }
 
   rollbackVistaFirma(ID: number): Observable<RequestResponse> {
-    return this.http.delete<RequestResponse>(`${environment.apiUrl}arriendos/reiniciarVistaFirma/${ID}`);
+    return this.http.delete<RequestResponse>(`${environment.apiUrl}utils/reiniciarVistaFirma/${ID}`);
   }
 
   rollbackVistaPago(ID: number): Observable<RequestResponse> {
-    return this.http.delete<RequestResponse>(`${environment.apiUrl}arriendos/reiniciarVistaPago/${ID}`);
-
+    return this.http.delete<RequestResponse>(`${environment.apiUrl}utils/reiniciarVistaPago/${ID}`);
   }
 
-  rollbackVistarequisitos(ID: number): Observable<RequestResponse> {
-    return this.http.delete<RequestResponse>(`${environment.apiUrl}arriendos/reiniciarVistaRequisito/${ID}`);
-
+  rollbackVistaRequisitos(ID: number): Observable<RequestResponse> {
+    return this.http.delete<RequestResponse>(`${environment.apiUrl}utils/reiniciarVistaRequisito/${ID}`);
   }
 
 }

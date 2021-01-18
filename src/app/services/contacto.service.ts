@@ -12,7 +12,8 @@ export class ContactoService {
   constructor(private http: HttpClient) { }
 
 
-  modificarContacto(contacto: Contacto): Observable<RequestResponse> {
-    return this.http.post<RequestResponse>(`${environment.apiUrl}contactos/editarcontacto`, contacto);
+  modificarContacto(ID: number, contacto: Contacto): Observable<RequestResponse> {
+    return this.http.put<RequestResponse>(`${environment.apiUrl}contactos/editarContacto/${ID}`, contacto);
   }
+
 }

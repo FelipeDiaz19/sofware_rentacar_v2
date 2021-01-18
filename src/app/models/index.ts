@@ -12,4 +12,5 @@ export { EmpresaRemplazo } from './empresaRemplazos';
 export { Empresa } from './empresas';
 export { Cliente } from './clientes';
 export { Contacto } from './contactos';
+export { Conductor } from './conductores';
 

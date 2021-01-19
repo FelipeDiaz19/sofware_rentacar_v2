@@ -33,7 +33,7 @@ export class SucursalListComponent implements OnInit {
           if (arriendo.estado_arriendo == "ANULADO") {
             anulados++
           }
-          if (arriendo.estado_arriendo == "ACTIVO" || arriendo.estado_arriendo == "EXTENDIDO") {
+          if (arriendo.estado_arriendo == "ACTIVO" || arriendo.estado_arriendo == "EXTENDIDO" || arriendo.estado_arriendo == "E-CONFIRMADO") {
             activos++
           }
         })

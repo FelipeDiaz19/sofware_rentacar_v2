@@ -1,6 +1,6 @@
-import { Routes } from "@angular/router";
-import { SucursalFormComponent } from "./sucursal-form/sucursal-form.component";
-import { SucursalListComponent } from "./sucursal-list/sucursal-list.component";
+import { Routes } from '@angular/router';
+import { SucursalFormComponent } from './sucursal-form/sucursal-form.component';
+import { SucursalListComponent } from './sucursal-list/sucursal-list.component';
 
 
 

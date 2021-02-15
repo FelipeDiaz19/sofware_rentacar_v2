@@ -1,16 +1,50 @@
-<br>
+<br><br>
+<form autocomplete="off" (ngSubmit)="registrarRol(form)" #form="ngForm">
+    <div class="row">
+        <div class="input-group col-md-5">
+            <input #nombre_rol="ngModel" [(ngModel)]="rol.nombre_rol" name="nombre_rol" type="text" class="form-control"
+                [class.is-invalid]="nombre_rol.invalid && nombre_rol.touched" placeholder="Nombre del nuevo rol"
+                aria-label="Nombre del nuevo rol" aria-describedby="button-add-rol" required>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary" id="button-add-rol">registrar
+                    nuevo
+                    rol</button>
+            </div>
+        </div>
+
+    </div>
+    <small *ngIf="nombre_rol.invalid && nombre_rol.touched" class="form-text text-danger">ingrese un
+        nombre</small>
+</form>
 <br>
 <div class="row">
-    <div class="input-group col-md-5">
-        <input type="text" class="form-control" placeholder="Nombre del nuevo rol" aria-label="Nombre del nuevo rol"
-            aria-describedby="button-add-rol">
-        <div class="input-group-append">
-            <button class="btn btn-outline-secondary" type="button" id="button-add-rol">registrar nuevo rol</button>
+    <div class="col-md-6 ">
+        <app-tabla [listThead]="listRolThead">
+            <tr *ngFor="let r of roles">
+                <td>{{r.id_rol}}</td>
+                <td>{{r.nombre_rol}}</td>
+                <td>{{r['usuarios'].length}}</td>
+                <td class="text-center"><button class="btn btn-dark"
+                        (click)="mostrarPermisos(r.id_rol,r.nombre_rol)">permisos</button></td>
+            </tr>
+        </app-tabla>
+    </div>
+    <div class="col-md-6 ">
+        <div class="row">
+            <div class="col-md-12">
+                <h6>Rol admin</h6>
+            </div>
+            <div class="col-md-12">
+                <app-tabla [listThead]="listPermisoThead">
+                    <tr *ngFor="let p of permisos">
+                        <td>{{p.id_permiso}}</td>
+                        <td>{{p.nombre_permiso}}</td>
+                        <td>{{p.descripcion_permiso}}</td>
+                        <td class="text-center"><button class="btn btn-danger"><i
+                                    class="fas fa-minus-circle"></i></button></td>
+                    </tr>
+                </app-tabla>
+            </div>
         </div>
     </div>
-    <div class="input-group col-md-7"></div>
-    <div class="input-group col-md-12">
-        <app-tabla [listThead]="listThead" [listTbody]="listTbody"></app-tabla>
-    </div>
-
 </div>

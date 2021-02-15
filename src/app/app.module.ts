@@ -26,8 +26,6 @@ import { ArriendoModule } from './views/arriendo/arriendo.module';
 import { TarifasModule } from './views/tarifas/tarifas.module';
 import { SucursalModule } from './views/sucursal/sucursal.module';
 import { RolesPermisosModule } from './views/roles-permisos/roles-permisos.module';
-import { ModalComponent } from './components/modal/modal.component';
-
 
 @NgModule({
   declarations: [
@@ -36,8 +34,6 @@ import { ModalComponent } from './components/modal/modal.component';
     SidebarsComponent,
     HomeComponent,
     AuthComponent,
-    ModalComponent,
-
   ],
   imports: [
     BrowserModule,

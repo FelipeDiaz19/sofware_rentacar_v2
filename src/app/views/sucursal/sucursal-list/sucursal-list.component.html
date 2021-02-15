@@ -1,39 +1,13 @@
 <h3>Todas las sucursales</h3>
 <br>
-<div style="overflow-x: scroll;">
-    <table class="table table-striped table-bordered" style="width:100%">
-        <thead class="btn-dark">
-            <tr>
-                <th scope="col">Sucursal</th>
-                <th scope="col">Region</th>
-                <th scope="col"> Arriendos totales</th>
-                <th scope="col"> Arriendos Finalizados</th>
-                <th scope="col"> Arriendos Activos</th>
-                <th scope="col"> Arriendos Anulados</th>
-                <th scope="col">fecha de registro</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let sucursal of sucursales">
-                <td>{{sucursal.nombre_sucursal}}</td>
-                <td>{{sucursal["regione"].nombre_region}}</td>
-                <td>{{sucursal["arriendos"].length}}</td>
-                <td>{{sucursal["cant_finalizados"]}}</td>
-                <td>{{sucursal["cant_activos"]}}</td>
-                <td>{{sucursal["cant_anulados"]}}</td>
-                <td>{{sucursal.createdAt}}</td>
-            </tr>
-        </tbody>
-        <tfoot class="btn-dark">
-            <tr>
-                <th scope="col">Sucursal</th>
-                <th scope="col">Region</th>
-                <th scope="col"> Arriendos totales</th>
-                <th scope="col"> Arriendos Finalizados</th>
-                <th scope="col"> Arriendos Activos</th>
-                <th scope="col"> Arriendos Anulados</th>
-                <th scope="col">fecha de registro</th>
-            </tr>
-        </tfoot>
-    </table>
-</div>
+<app-tabla [listThead]="listThead">
+    <tr *ngFor="let sucursal of sucursales">
+        <td>{{sucursal.nombre_sucursal}}</td>
+        <td>{{sucursal["regione"].nombre_region}}</td>
+        <td>{{sucursal["arriendos"].length}}</td>
+        <td>{{sucursal["cant_finalizados"]}}</td>
+        <td>{{sucursal["cant_activos"]}}</td>
+        <td>{{sucursal["cant_anulados"]}}</td>
+        <td>{{sucursal.createdAt}}</td>
+    </tr>
+</app-tabla>

@@ -7,7 +7,7 @@ import { SucursalesService } from 'src/app/services/sucursales.service';
 import { RegionesService } from 'src/app/services/regiones.service';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { TablaModule } from 'src/app/components/tabla/tabla.module';
 
 
 @NgModule({
@@ -16,9 +16,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SucursalListComponent,
     SucursalFormComponent,
   ],
+
   imports: [
-    CommonModule, AppRoutingModule, FormsModule, ReactiveFormsModule,
+    CommonModule, AppRoutingModule, FormsModule, ReactiveFormsModule, TablaModule
   ],
+
   providers: [
     SucursalesService, RegionesService
   ]

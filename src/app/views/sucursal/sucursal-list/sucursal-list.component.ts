@@ -10,10 +10,11 @@ import { SucursalesService } from 'src/app/services/sucursales.service';
 export class SucursalListComponent implements OnInit {
 
   sucursales: Sucursal[] = [];
-  dtoSucursal: any = [];
+  listThead: string[] = [];
 
   constructor(private _sucursal: SucursalesService) {
-
+    this.listThead = ['Sucursal', 'Region', 'Arriendos totales', 'Arriendos Finalizados',
+      'Arriendos Activos', 'Arriendos Anulados', 'fecha de registro'];
   }
 
   ngOnInit(): void {
@@ -42,9 +43,9 @@ export class SucursalListComponent implements OnInit {
         sucursal["cant_anulados"] = anulados;
       })
       this.sucursales = sucursales;
+
     })
   }
-
 
 
 

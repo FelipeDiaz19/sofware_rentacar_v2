@@ -8,9 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TablaComponent implements OnInit {
 
   @Input() listThead: String[] = [];
-  @Input() listTbody: String[] = [];
-
-
 
   constructor() {
 

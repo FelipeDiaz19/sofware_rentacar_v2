@@ -17,20 +17,22 @@ export class RolesContentComponent implements OnInit {
   listPermisoThead: string[] = [];
 
   roles: Rol[] = [];
+  permisosRol: any[] = [];
   permisos: Permiso[] = [];
+
   rol: Rol = new Rol();
+  newRol: Rol = new Rol();
+  titulo_permisos: string;
+  select_permiso: boolean = false;
 
   constructor(private _rol: RolesService, private _permiso: PermisosService, private alert: AlertHelper) {
-    this.listRolThead = ['ID', 'Nombre', 'Usuarios', ''];
+    this.listRolThead = ['ID', 'Nombre rol', 'Usuarios', ''];
   }
-
 
 
   ngOnInit(): void {
     this.mostrarRoles();
   }
-
-
 
   mostrarRoles(): void {
     this._rol.getAll().subscribe((roles: Rol[]) => {
@@ -39,12 +41,30 @@ export class RolesContentComponent implements OnInit {
   }
 
 
-
-  mostrarPermisos(id: number, nombre: string): void {
-    this._permiso.getPermisosWithRol(id).subscribe((permisos: Permiso[]) => {
+  mostrarPermisos(): void {
+    this._permiso.getAll().subscribe((permisos: Permiso[]) => {
       this.permisos = permisos;
-      if (this.permisos.length > 0) {
-        this.listPermisoThead = ['ID', 'Titulo', 'Descripcion', ''];
+    });
+  }
+
+
+
+  mostrarPermisosByRol(rol: Rol): void {
+    this.rol = rol;
+    this.titulo_permisos = rol.nombre_rol;
+    this.select_permiso = true;
+    this.mostrarPermisos();
+    this._permiso.getPermisosWithRol(rol.id_rol).subscribe((permisosRol: any) => {
+      this.permisosRol = permisosRol;
+      if (this.permisosRol.length > 0) {
+        this.listPermisoThead = ['ID', 'Titulo permiso', 'Descripcion', ''];
+        this.permisosRol.forEach((permiso) => {
+          for (let i = 0; i < this.permisos.length; i++) {
+            if (this.permisos[i].id_permiso === permiso.id_permiso) {
+              this.permisos.splice(i, 1);
+            }
+          }
+        })
       } else {
         this.listPermisoThead.length = 0;
       }
@@ -60,14 +80,32 @@ export class RolesContentComponent implements OnInit {
       });
       return;
     }
-    this.rol = FORM.value;
-    this._rol.create(this.rol).subscribe(data => {
+
+    this.newRol = FORM.value;
+    this._rol.create(this.newRol).subscribe(data => {
       if (data.success) {
         this.alert.createAlert('nuevo rol registrado!');
         this.mostrarRoles();
         FORM.reset();
       }
     });
+  }
+
+
+  asociarRolPermiso(idPermiso: string): void {
+    if (idPermiso !== 'null') {
+      this._permiso.createRolPermiso(this.rol.id_rol, Number(idPermiso)).subscribe(() => {
+        this.mostrarPermisosByRol(this.rol);
+      })
+    }
+  }
+
+  eliminarRolPermiso(idRolPermiso: string) {
+    if (idRolPermiso !== 'null') {
+      this._permiso.deteleRolPermiso(Number(idRolPermiso)).subscribe(() => {
+        this.mostrarPermisosByRol(this.rol);
+      })
+    }
   }
 
 

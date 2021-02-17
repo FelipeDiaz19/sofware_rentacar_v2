@@ -17,6 +17,7 @@ export class PermisosContentComponent implements OnInit {
   permiso: Permiso = new Permiso();
   listPermisoThead: string[] = [];
   permisos: Permiso[] = [];
+  tituloModal: string;
 
   ngOnInit(): void {
     this.cargarPermisos();
@@ -45,6 +46,12 @@ export class PermisosContentComponent implements OnInit {
       FORM.reset();
       this.cargarPermisos();
     });
+  }
+
+
+  editarPermiso(idPermiso: string): void {
+    this.tituloModal = 'hola mundo';
+    console.log(idPermiso);
   }
 
 }

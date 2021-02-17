@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-modal',
@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
+  @ViewChild('modal') element: ElementRef;
+  @Input() tituloModal: string;
+
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+  public showModal(): void {
+    console.log(this.element);
+  }
 }

@@ -27,7 +27,7 @@
             <tr *ngFor="let rol of roles">
                 <td>{{rol.id_rol}}</td>
                 <td>{{rol.nombre_rol}}</td>
-                <td>{{rol['usuarios'].length}}</td>
+                <td class="text-center">{{rol['usuarios'].length}}</td>
                 <td class="text-center"><button class="btn btn-dark"
                         (click)="mostrarPermisosByRol(rol)">permisos</button></td>
             </tr>

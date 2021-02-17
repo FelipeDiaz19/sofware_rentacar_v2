@@ -7,11 +7,10 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TablaComponent implements OnInit {
 
-  @Input() listThead: String[] = [];
+  @Input() listThead: string[] = [];
 
-  constructor() {
 
-  }
+  constructor() { }
 
   ngOnInit(): void {
 

@@ -37,10 +37,17 @@
                     <td>{{p.nombre_permiso}}</td>
                     <td style='font-size: 0.8rem;'>{{p.descripcion_permiso}}</td>
                     <td>
-                        <button type="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></button>
+                        <button (click)="editarPermiso(p.id_permiso)" type="button" class="btn btn-outline-primary"><i
+                                class="fas fa-edit"></i></button>
                     </td>
                 </tr>
             </app-tabla>
         </div>
     </div>
 </form>
+
+
+<app-modal [tituloModal]="tituloModal">
+
+
+</app-modal>

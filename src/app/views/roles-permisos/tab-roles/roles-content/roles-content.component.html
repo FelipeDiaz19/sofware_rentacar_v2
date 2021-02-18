@@ -2,7 +2,7 @@
 <form autocomplete="off" (ngSubmit)="registrarRol(form)" #form="ngForm">
     <br>
     <div class="row">
-        <div class="input-group col-md-6">
+        <div class="input-group col-md-5">
             <input #nombre_rol="ngModel" [(ngModel)]="newRol.nombre_rol" name="nombre_rol" type="text"
                 class="form-control" [class.is-invalid]="nombre_rol.invalid && nombre_rol.touched"
                 placeholder="Nombre del nuevo rol" aria-label="Nombre del nuevo rol" aria-describedby="button-add-rol"
@@ -13,16 +13,16 @@
                     rol</button>
             </div>
         </div>
-        <div class="col-md-6">
-            <h4>{{titulo_permisos}}</h4>
+        <div class="col-md-7">
+            <h4 class="text-center">{{titulo_permisos}}</h4>
         </div>
     </div>
     <small *ngIf="nombre_rol.invalid && nombre_rol.touched" class="form-text text-danger">ingrese un
         nombre</small>
 </form>
-<br><br>
+<br>
 <div class="row">
-    <div class="col-md-6 ">
+    <div class="col-md-5 ">
         <app-tabla [listThead]="listRolThead">
             <tr *ngFor="let rol of roles">
                 <td>{{rol.id_rol}}</td>
@@ -33,7 +33,7 @@
             </tr>
         </app-tabla>
     </div>
-    <div class="col-md-6 ">
+    <div class="col-md-7 ">
         <div class="row">
             <div class="col-md-12" *ngIf="select_permiso">
                 <div class="input-group">
@@ -48,6 +48,7 @@
                 </div>
             </div>
             <div class="col-md-12">
+                <br>
                 <app-tabla [listThead]="listPermisoThead">
                     <tr *ngFor="let p of permisosRol">
                         <td>{{p['permiso'].id_permiso}}</td>

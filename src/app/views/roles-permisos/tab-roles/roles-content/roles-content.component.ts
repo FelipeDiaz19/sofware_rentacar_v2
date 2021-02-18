@@ -25,6 +25,7 @@ export class RolesContentComponent implements OnInit {
   titulo_permisos: string;
   select_permiso: boolean = false;
 
+
   constructor(private _rol: RolesService, private _permiso: PermisosService, private alert: AlertHelper) {
     this.listRolThead = ['ID', 'Nombre rol', 'Usuarios', ''];
   }
@@ -51,7 +52,7 @@ export class RolesContentComponent implements OnInit {
 
   mostrarPermisosByRol(rol: Rol): void {
     this.rol = rol;
-    this.titulo_permisos = rol.nombre_rol;
+    this.titulo_permisos = 'Permisos del rol : ' + rol.nombre_rol;
     this.select_permiso = true;
     this.mostrarPermisos();
     this._permiso.getPermisosWithRol(rol.id_rol).subscribe((permisosRol: any) => {
@@ -64,7 +65,7 @@ export class RolesContentComponent implements OnInit {
               this.permisos.splice(i, 1);
             }
           }
-        })
+        });
       } else {
         this.listPermisoThead.length = 0;
       }
@@ -100,11 +101,11 @@ export class RolesContentComponent implements OnInit {
     }
   }
 
-  eliminarRolPermiso(idRolPermiso: string) {
+  eliminarRolPermiso(idRolPermiso: string): void {
     if (idRolPermiso !== 'null') {
       this._permiso.deteleRolPermiso(Number(idRolPermiso)).subscribe(() => {
         this.mostrarPermisosByRol(this.rol);
-      })
+      });
     }
   }
 

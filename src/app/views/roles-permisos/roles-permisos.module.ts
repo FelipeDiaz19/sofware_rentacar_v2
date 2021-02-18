@@ -7,7 +7,6 @@ import { RolesPermisosHeaderComponent } from './roles-permisos-header/roles-perm
 import { RolesContentComponent } from './tab-roles/roles-content/roles-content.component';
 import { PermisosContentComponent } from './tab-permisos/permisos-content/permisos-content.component';
 import { ModalModule } from 'src/app/components/modal/modal.module';
-
 @NgModule({
   declarations: [RolesPermisosHeaderComponent, RolesContentComponent, PermisosContentComponent],
   imports: [CommonModule, AppRoutingModule, TablaModule, ModalModule, FormsModule]

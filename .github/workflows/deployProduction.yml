@@ -24,7 +24,7 @@ jobs:
         script: |
           cd /root/HodgesEXE/apis_rentacar/client_angular_rentacar/
           git checkout master
-          git pull
+          git pull grupo master
           npm install
           pm2 restart client_rentacar
           exit

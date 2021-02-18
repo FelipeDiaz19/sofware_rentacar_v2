@@ -1,0 +1,53 @@
+<br>
+<form autocomplete="off" (ngSubmit)="registrarPermiso(form)" #form="ngForm">
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label for="id_permiso"> codigo permiso </label>
+            <input #id_permiso="ngModel" [(ngModel)]="permiso.id_permiso" name="id_permiso"
+                [class.is-invalid]="id_permiso.invalid && id_permiso.touched" class="form-control" type="text" required>
+            <small *ngIf="id_permiso.invalid && id_permiso.touched" class="form-text text-danger">ingrese un
+                codigo</small>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="nombre_permiso"> Titulo permiso </label>
+            <input #nombre_permiso="ngModel" [(ngModel)]="permiso.nombre_permiso" name="nombre_permiso"
+                [class.is-invalid]="nombre_permiso.invalid && nombre_permiso.touched" class="form-control" type="text"
+                required>
+            <small *ngIf="nombre_permiso.invalid && nombre_permiso.touched" class="form-text text-danger">ingrese un
+                nombre</small>
+        </div>
+        <div class="form-group  col-md-12 ">
+            <label for="descripcion_permiso">Descripcion permiso</label>
+            <textarea #descripcion_permiso="ngModel" [(ngModel)]="permiso.descripcion_permiso"
+                [class.is-invalid]="descripcion_permiso.invalid && descripcion_permiso.touched"
+                name="descripcion_permiso" class="form-control" rows="3" required></textarea>
+            <small *ngIf="descripcion_permiso.invalid && descripcion_permiso.touched"
+                class="form-text text-danger">ingrese una
+                descripcion</small>
+        </div>
+        <br>
+        <div class="form-group  col-md-12">
+            <button type="submit" class="btn btn-success">registrar permiso</button>
+        </div>
+        <div class="col-md-12">
+            <br>
+            <app-tabla [listThead]="listPermisoThead">
+                <tr *ngFor="let p of permisos">
+                    <td>{{p.id_permiso}}</td>
+                    <td>{{p.nombre_permiso}}</td>
+                    <td style='font-size: 0.8rem;'>{{p.descripcion_permiso}}</td>
+                    <td>
+                        <button (click)="editarPermiso(p.id_permiso)" type="button" class="btn btn-outline-primary"><i
+                                class="fas fa-edit"></i></button>
+                    </td>
+                </tr>
+            </app-tabla>
+        </div>
+    </div>
+</form>
+
+
+<app-modal [tituloModal]="tituloModal">
+
+
+</app-modal>

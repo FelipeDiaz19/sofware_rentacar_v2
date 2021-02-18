@@ -1,0 +1,66 @@
+<br><br>
+<form autocomplete="off" (ngSubmit)="registrarRol(form)" #form="ngForm">
+    <br>
+    <div class="row">
+        <div class="input-group col-md-5">
+            <input #nombre_rol="ngModel" [(ngModel)]="newRol.nombre_rol" name="nombre_rol" type="text"
+                class="form-control" [class.is-invalid]="nombre_rol.invalid && nombre_rol.touched"
+                placeholder="Nombre del nuevo rol" aria-label="Nombre del nuevo rol" aria-describedby="button-add-rol"
+                required>
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-outline-secondary" id="button-add-rol">registrar
+                    nuevo
+                    rol</button>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <h4 class="text-center">{{titulo_permisos}}</h4>
+        </div>
+    </div>
+    <small *ngIf="nombre_rol.invalid && nombre_rol.touched" class="form-text text-danger">ingrese un
+        nombre</small>
+</form>
+<br>
+<div class="row">
+    <div class="col-md-5 ">
+        <app-tabla [listThead]="listRolThead">
+            <tr *ngFor="let rol of roles">
+                <td>{{rol.id_rol}}</td>
+                <td>{{rol.nombre_rol}}</td>
+                <td class="text-center">{{rol['usuarios'].length}}</td>
+                <td class="text-center"><button class="btn btn-dark"
+                        (click)="mostrarPermisosByRol(rol)">permisos</button></td>
+            </tr>
+        </app-tabla>
+    </div>
+    <div class="col-md-7 ">
+        <div class="row">
+            <div class="col-md-12" *ngIf="select_permiso">
+                <div class="input-group">
+                    <select #select_permiso class="custom-select">
+                        <option [value]="null" selected>Seleccionar permiso</option>
+                        <option *ngFor="let p of permisos" [value]="p.id_permiso">{{p.nombre_permiso}}</option>
+                    </select>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" (click)="asociarRolPermiso(select_permiso.value)"
+                            type="button">agregar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <br>
+                <app-tabla [listThead]="listPermisoThead">
+                    <tr *ngFor="let p of permisosRol">
+                        <td>{{p['permiso'].id_permiso}}</td>
+                        <td>{{p['permiso'].nombre_permiso}}</td>
+                        <td style='font-size: 0.7rem;'>{{p['permiso'].descripcion_permiso}}</td>
+                        <td class="text-center"><button class="btn btn-danger"
+                                (click)="eliminarRolPermiso(p['id_rolPermiso'])"><i
+                                    class="fas fa-minus-circle"></i></button>
+                        </td>
+                    </tr>
+                </app-tabla>
+            </div>
+        </div>
+    </div>
+</div>

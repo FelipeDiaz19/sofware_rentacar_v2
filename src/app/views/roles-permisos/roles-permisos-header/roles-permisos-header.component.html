@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item "><a [routerLink]="['home']" style='color: rgb(0, 0, 0);'>Administracion</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">Administracion de roles y permisos</li>
+        </ol>
+    </nav>
+    <h1 class="h3">Administracion de roles y permisos</h1>
+</div>
+
+<div>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="btn nav-link active" data-toggle="tab" (click)="navergar('roles/rol')">Administracion roles</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="btn nav-link" data-toggle="tab" (click)="navergar('roles/permiso')">Administracion de permisos</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+
+        <router-outlet></router-outlet>
+
+    </div>
+    <br><br><br>
+</div>

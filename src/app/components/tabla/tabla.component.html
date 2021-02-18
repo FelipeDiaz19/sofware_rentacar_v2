@@ -1,0 +1,17 @@
+<div style="overflow: scroll; height:500px;">
+    <table class="table table-striped table-bordered" style="width:100%">
+        <thead class="btn-dark">
+            <tr>
+                <th *ngFor="let item of listThead" scope="col">{{item}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-content></ng-content>
+        </tbody>
+        <tfoot class="btn-dark">
+            <tr>
+                <th *ngFor="let item of listThead" scope="col">{{item}}</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

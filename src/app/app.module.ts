@@ -25,7 +25,7 @@ import { AuthComponent } from './components/auth.component';
 import { ArriendoModule } from './views/arriendo/arriendo.module';
 import { TarifasModule } from './views/tarifas/tarifas.module';
 import { SucursalModule } from './views/sucursal/sucursal.module';
-
+import { RolesPermisosModule } from './views/roles-permisos/roles-permisos.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { SucursalModule } from './views/sucursal/sucursal.module';
     SidebarsComponent,
     HomeComponent,
     AuthComponent,
-
   ],
   imports: [
     BrowserModule,
@@ -42,7 +41,8 @@ import { SucursalModule } from './views/sucursal/sucursal.module';
     AppRoutingModule,
     ArriendoModule,
     TarifasModule,
-    SucursalModule
+    SucursalModule,
+    RolesPermisosModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

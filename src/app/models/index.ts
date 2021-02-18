@@ -13,4 +13,5 @@ export { Empresa } from './empresas';
 export { Cliente } from './clientes';
 export { Contacto } from './contactos';
 export { Conductor } from './conductores';
+export { Permiso } from './permisos';
 

@@ -4,7 +4,7 @@
 
     <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
       <div class="sidebar-sticky pt-1">
-        <ul class="nav flex-column" routerLinkActive="card">
+        <ul class="nav flex-column" routerLinkActive="card" *ngIf="modulo1">
           <br>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" href="https://imlchile.cl:4200/ingresos/rentacar">
@@ -14,7 +14,7 @@
           </li>
           <br>
         </ul>
-        <ul class="nav flex-column" routerLinkActive="card">
+        <ul class="nav flex-column" routerLinkActive="card" *ngIf="modulo2">
           <br>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" href="https://imlchile.cl:4200/egresos/rentacar">
@@ -24,7 +24,7 @@
           </li>
           <br>
         </ul>
-        <ul class="nav flex-column" routerLinkActive="card">
+        <ul class="nav flex-column" routerLinkActive="card" *ngIf="modulo3">
           <br>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['tarifas']">
@@ -34,7 +34,7 @@
           </li>
           <br>
         </ul>
-        <ul class="nav flex-column" routerLinkActive="card">
+        <ul class="nav flex-column" routerLinkActive="card" *ngIf="modulo4">
           <br>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['sucursales']">
@@ -44,7 +44,7 @@
           </li>
           <br>
         </ul>
-        <ul class="nav flex-column" routerLinkActive="card">
+        <ul class="nav flex-column" routerLinkActive="card" *ngIf="modulo5">
           <br>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['arriendos']">
@@ -54,7 +54,7 @@
           </li>
           <br>
         </ul>
-        <ul class="nav flex-column" routerLinkActive="card">
+        <ul class="nav flex-column" routerLinkActive="card" *ngIf="modulo6">
           <br>
           <li class="nav-item">
             <a class="nav-link" routerLinkActive="active" [routerLink]="['roles']">

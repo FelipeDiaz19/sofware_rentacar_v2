@@ -29,6 +29,10 @@ export class AuthService {
     }))
   }
 
+  public validarPermiso(): Observable<[]> {
+    return this.http.get<[]>(`${environment.apiUrl}permisos/validarPermisos/${this.usuario.id_rol}`);
+  }
+
 
   public getUsuario(): Usuario {
     this.usuario = JSON.parse(localStorage.getItem('usuario'));

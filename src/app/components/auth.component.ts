@@ -16,16 +16,19 @@ export class AuthComponent implements OnInit {
 
   ngOnInit(): void {
     this.buscarUsuario();
+
   }
 
   buscarUsuario() {
     const { token } = this.route.snapshot.params;
     this.auth.login(token).subscribe((usuario: Usuario) => {
       this.usuario = usuario;
+      this.auth.validarPermiso();
       this.router.navigate(["/home"]);
+
     }, (error) => {
       console.log("error en el componente auth");
-     // window.location.href = `${environment.indexUrl}`;
+      // window.location.href = `${environment.indexUrl}`;
     })
   }
 

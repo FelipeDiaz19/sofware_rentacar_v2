@@ -13,6 +13,16 @@ export class AuthService {
   usuario: Usuario = new Usuario();
   existe: boolean = false;
 
+  // modulos disponibles
+  modulo1: Boolean = false;
+  modulo2: Boolean = false;
+  modulo3: Boolean = false;
+  modulo4: Boolean = false;
+  modulo5: Boolean = false;
+  modulo6: Boolean = false;
+
+
+
   constructor(private http: HttpClient) {
     this.usuario.nombre_usuario = "cargando..."
     this.estadoSesion();
@@ -29,8 +39,31 @@ export class AuthService {
     }))
   }
 
-  public validarPermiso(): Observable<[]> {
-    return this.http.get<[]>(`${environment.apiUrl}permisos/validarPermisos/${this.usuario.id_rol}`);
+  public validarPermiso() {
+    this.http.get(`${environment.apiUrl}permisos/validarPermisos/${this.usuario.id_rol}`).subscribe((data: []) => {
+      data.forEach(id => {
+        switch (true) {
+          case (id == 21):
+            this.modulo1 = true;
+            break;
+          case (id == 22):
+            this.modulo2 = true;
+            break;
+          case (id == 23):
+            this.modulo3 = true;
+            break;
+          case (id == 24):
+            this.modulo4 = true;
+            break;
+          case (id == 25):
+            this.modulo5 = true;
+            break;
+          case (id == 26):
+            this.modulo6 = true;
+            break;
+        }
+      })
+    })
   }
 
 

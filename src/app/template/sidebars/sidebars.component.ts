@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -6,16 +6,19 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './sidebars.component.html',
   styleUrls: ['./sidebars.component.css']
 })
-export class SidebarsComponent implements OnInit {
+export class SidebarsComponent implements OnInit, AfterViewInit {
 
   constructor(public _auth: AuthService) {
 
   }
-
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     if (this._auth.estadoSesion()) {
       this._auth.validarPermiso();
     }
+  }
+
+  ngOnInit(): void {
+
   }
 
 

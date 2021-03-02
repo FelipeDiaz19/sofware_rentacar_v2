@@ -18,7 +18,7 @@ export class VehiculosService {
 
 
   getAll(): Observable<Vehiculo[]> {
-    return this.http.get<RequestResponse>(`${environment.apiUrl}vehiculos/cargarTotalVehiculos`).pipe(map((response: RequestResponse) => {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}vehiculos/cargarVehiculos`).pipe(map((response: RequestResponse) => {
       return this.vehiculos = response.data;
     }))
   }

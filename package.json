@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "prod": "ng serve --ssl --sslCert /etc/letsencrypt/archive/imlchile.cl/fullchain5.pem --sslKey /etc/letsencrypt/archive/imlchile.cl/privkey5.pem --host 0.0.0.0 --port 3012 --disableHostCheck --prod",
-    "preProd": "ng serve --ssl --sslCert /etc/letsencrypt/archive/imlchile.cl/fullchain5.pem --sslKey /etc/letsencrypt/archive/imlchile.cl/privkey5.pem --host 0.0.0.0 --port 3013 --disableHostCheck --configuration=preProd",
+    "prod": "ng serve --ssl --sslCert /etc/letsencrypt/archive/imlchile.cl/fullchain6.pem --sslKey /etc/letsencrypt/archive/imlchile.cl/privkey5.pem --host 0.0.0.0 --port 3012 --disableHostCheck --prod",
+    "preProd": "ng serve --ssl --sslCert /etc/letsencrypt/archive/imlchile.cl/fullchain6.pem --sslKey /etc/letsencrypt/archive/imlchile.cl/privkey5.pem --host 0.0.0.0 --port 3013 --disableHostCheck --configuration=preProd",
     "start": "ng serve ",
     "build": "ng build",
     "test": "ng test",

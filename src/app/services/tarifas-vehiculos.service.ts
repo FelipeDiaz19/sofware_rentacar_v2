@@ -20,11 +20,11 @@ export class TarifasVehiculosService {
 
 
   createList(TARIFASVEHICULOS: TarifaVehiculo[]): Observable<RequestResponse> {
-    return this.http.post<RequestResponse>(`${environment.apiUrl}tarifasVehiculos/registrarTarifa`, { TARIFASVEHICULOS });
+    return this.http.post<RequestResponse>(`${environment.apiUrl}vehiculos/registrarTarifa`, { TARIFASVEHICULOS });
   }
 
   getAll(): Observable<TarifaVehiculo[]> {
-    return this.http.get<RequestResponse>(`${environment.apiUrl}tarifasVehiculos/cargarTarifasVehiculos`).pipe(map((response: RequestResponse) => {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}vehiculos/cargarTarifasVehiculos`).pipe(map((response: RequestResponse) => {
       response.data.map((tarifasVehiculos: any) => {
 
         tarifasVehiculos.valor_iva_diario = "$ " + this.formatter.format(this.cacularIva(tarifasVehiculos.valor_neto_diario));

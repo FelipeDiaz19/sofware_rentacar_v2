@@ -15,7 +15,7 @@ export class RegionesService {
   constructor(private http: HttpClient) { }
 
   getAll(): Observable<Region[]> {
-    return this.http.get<RequestResponse>(`${environment.apiUrl}regiones/cargarRegiones`).pipe(map((response: RequestResponse) => {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}sucursales/cargarRegiones`).pipe(map((response: RequestResponse) => {
       return this.regiones = response.data;
     }))
   }

@@ -16,13 +16,13 @@ export class RolesService {
 
 
   getAll(): Observable<Rol[]> {
-    return this.http.get<RequestResponse>(`${environment.apiUrl}roles/cargarRoles`).pipe(map((response: RequestResponse) => {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}permisos/cargarRoles`).pipe(map((response: RequestResponse) => {
       return this.roles = response.data;
     }));
   }
 
   create(rol: Rol): Observable<RequestResponse> {
-    return this.http.post<RequestResponse>(`${environment.apiUrl}roles/registrarRol`, rol);
+    return this.http.post<RequestResponse>(`${environment.apiUrl}permisos/registrarRol`, rol);
   }
 
 

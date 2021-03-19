@@ -13,7 +13,7 @@ export class ContactoService {
 
 
   modificarContacto(ID: number, contacto: Contacto): Observable<RequestResponse> {
-    return this.http.put<RequestResponse>(`${environment.apiUrl}contactos/editarContacto/${ID}`, contacto);
+    return this.http.put<RequestResponse>(`${environment.apiUrl}arriendos/editarContacto/${ID}`, contacto);
   }
 
 }

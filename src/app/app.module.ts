@@ -26,6 +26,15 @@ import { ArriendoModule } from './views/arriendo/arriendo.module';
 import { TarifasModule } from './views/tarifas/tarifas.module';
 import { SucursalModule } from './views/sucursal/sucursal.module';
 import { RolesPermisosModule } from './views/roles-permisos/roles-permisos.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatDialogModule } from '@angular/material/dialog';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -42,7 +51,14 @@ import { RolesPermisosModule } from './views/roles-permisos/roles-permisos.modul
     ArriendoModule,
     TarifasModule,
     SucursalModule,
-    RolesPermisosModule
+    RolesPermisosModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    NgbModalModule,
+    CommonModule,
+    FormsModule,
+    FlatpickrModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

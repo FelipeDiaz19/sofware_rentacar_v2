@@ -1,5 +1,5 @@
 import {
-  Component,OnInit,
+  Component, OnInit,
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
@@ -23,7 +23,7 @@ import {
   CalendarView,
 } from 'angular-calendar';
 //importacion idioma español
-import {registerLocaleData} from '@angular/common';
+import { registerLocaleData } from '@angular/common';
 import localeEs from '@angular/common/locales/es';
 
 registerLocaleData(localeEs);
@@ -54,11 +54,12 @@ const colors: any = {
   templateUrl: './sucursal-modal.component.html',
   styleUrls: ['./sucursal-modal.component.css']
 })
-export class SucursalModalComponent implements OnInit{
+export class SucursalModalComponent implements OnInit {
 
   sucursales: Sucursal[] = [];
   listThead: string[] = [];
-  
+
+
   ngOnInit(): void {
     this.cargarSucursal();
   }
@@ -80,14 +81,14 @@ export class SucursalModalComponent implements OnInit{
 
           if (arriendo.estado_arriendo == 'FINALIZADO') {
             finalizados++;
-            if(arriendo.id_sucursal == sucursal.id_sucursal){
+            if (arriendo.id_sucursal == sucursal.id_sucursal) {
               idarriFinalizado.push(arriendo.id_arriendo);
             }
-            
+
           }
           if (arriendo.estado_arriendo == 'ANULADO') {
-            anulados++;        
-            if(arriendo.id_sucursal == sucursal.id_sucursal){
+            anulados++;
+            if (arriendo.id_sucursal == sucursal.id_sucursal) {
               idarriAnulado.push(arriendo.id_arriendo);
             }
           }
@@ -96,12 +97,12 @@ export class SucursalModalComponent implements OnInit{
             arriendo.estado_arriendo == 'EXTENDIDO' ||
             arriendo.estado_arriendo == 'E-CONFIRMADO'
           ) {
-            if(arriendo.id_sucursal == sucursal.id_sucursal){
+            if (arriendo.id_sucursal == sucursal.id_sucursal) {
               idarriActivo.push(arriendo.id_arriendo);
-            }            
+            }
             activos++;
-          }   
-          
+          }
+
 
         });
         sucursal['idarriFinalizado'] = idarriFinalizado;
@@ -109,7 +110,7 @@ export class SucursalModalComponent implements OnInit{
         sucursal['idarriActivo'] = idarriActivo;
         sucursal['fechaarri'] = fechaArriendos;
 
-        
+
         console.log(idarriFinalizado);
         console.log(idarriAnulado);
         console.log(idarriActivo);
@@ -203,7 +204,7 @@ export class SucursalModalComponent implements OnInit{
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private _sucursal: SucursalesService,private modal: NgbModal) {}
+  constructor(private _sucursal: SucursalesService, private modal: NgbModal) { }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

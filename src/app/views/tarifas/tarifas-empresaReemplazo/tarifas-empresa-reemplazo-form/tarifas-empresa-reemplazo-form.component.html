@@ -1,0 +1,86 @@
+<div class="tab-pane">
+  <br /><br />
+
+  <h4>Asignar tarifa a las empresas</h4>
+  <br />
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+    <div class="form-row">
+      <div class="col-xl-12">
+        <div class="form-group col-xl-12">
+          <div class="row">
+            <div class="col-xl-6">
+              <label for="Valor"> Sucursales </label>
+
+              <select class="form-control" required formControlName="Sucursal">
+                <option *ngFor="let sucursal of sucursales" [value]="sucursal">
+                  {{ sucursal }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-xl-6">
+              <label for="EmpresaReempazo"> Empresa Reemplazo </label>
+
+              <select
+                class="form-control"
+                required
+                formControlName="EmpresaReemplazo"
+              >
+                <option
+                  *ngFor="let empresa of empresaReemplazo"
+                  [value]="empresa"
+                >
+                  {{ empresa }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-xl-6">
+              <br />
+              <label for="Valor"> Categoria </label>
+              <select class="form-control" required formControlName="Categoria">
+                <option
+                  *ngFor="let empresa of Categorias_List"
+                  [value]="empresa"
+                >
+                  {{ empresa }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-xl-6">
+              <br />
+              <label for="Valor"> Monto Neto </label>
+              <input
+                type="number"
+                min="0"
+                required
+                class="form-control"
+                formControlName="Valor"
+                (input)="inputValidator($event)"
+              />
+            </div>
+            <div *ngIf="form.get('Valor').errors && form.get('Valor').dirty">
+              <p *ngIf="form.get('Valor').hasErrors('required')">
+                El campo es requerido
+              </p>
+            </div>
+          </div>
+        </div>
+        <button
+          type="submit"
+          [disabled]="form.invalid"
+          class="btn btn-secondary btn-sm m-1 float-right"
+        >
+          Asignar tarifa
+        </button>
+      </div>
+    </div>
+  </form>
+  <br />
+  <br />
+
+  <app-tarifas-empresa-reemplazo-listm [childMessage]="parentMessage">
+  </app-tarifas-empresa-reemplazo-listm>
+</div>

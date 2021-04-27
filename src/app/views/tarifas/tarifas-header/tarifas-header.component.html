@@ -1,11 +1,20 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
-      <li class="breadcrumb-item "><a [routerLink]="['home']" style='color: rgb(0, 0, 0);'><span
-            style='font-size: 1.2rem;'> Modulo administracion
-          </span></a>
+      <li class="breadcrumb-item">
+        <a [routerLink]="['home']" style="color: rgb(0, 0, 0)"
+          ><span style="font-size: 1.2rem"> Modulo administracion </span></a
+        >
       </li>
-      <li class="breadcrumb-item active" aria-current="page" style='font-size: 1.2rem;'>tarifas arriendo</li>
+      <li
+        class="breadcrumb-item active"
+        aria-current="page"
+        style="font-size: 1.2rem"
+      >
+        tarifas arriendo
+      </li>
     </ol>
   </nav>
   <h1 class="h3">Administracion de tarifas</h1>
@@ -13,20 +22,41 @@
 <div>
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <a class="btn nav-link active" data-toggle="tab" (click)="navergar('tarifas/tarifasVehiculos')">Tarifas
-        automoviles</a>
+      <a
+        class="btn nav-link active"
+        data-toggle="tab"
+        (click)="navergar('tarifas/tarifasVehiculos')"
+        >Tarifas automoviles</a
+      >
     </li>
     <li class="nav-item" role="presentation">
-      <a class="btn nav-link" data-toggle="tab" (click)="navergar('tarifas/tarifasAccesorios')">Tarifas
-        accesorios</a>
+      <a
+        class="btn nav-link"
+        data-toggle="tab"
+        (click)="navergar('tarifas/tarifasAccesorios')"
+        >Tarifas accesorios</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="btn nav-link"
+        data-toggle="tab"
+        (click)="navergar('tarifas/tarifasEmpresasReemplazo')"
+        >Tarifas de Empresa de Reemplazo</a
+      >
+    </li>
+    <li class="nav-item" role="presentation">
+      <a
+        class="btn nav-link"
+        data-toggle="tab"
+        (click)="navergar('tarifas/tarifasEmpresasReemplazoUpdate')"
+        >Modificar Tarifas de Reemplazo</a
+      >
     </li>
   </ul>
 
   <div class="tab-content" id="myTabContent">
-
     <router-outlet></router-outlet>
-
-
   </div>
-  <br><br><br>
+  <br /><br /><br />
 </div>

@@ -283,19 +283,8 @@ export class TarifasEmpresaReemplazoListmComponent implements OnInit {
                 this.data.push({Sucursal: TarifaEmpresaReemplazo[i].NombreSucursal,Empresa:TarifaEmpresaReemplazo[i].codigo_empresaRemplazo,
                 Categoria: TarifaEmpresaReemplazo[i].categoria,Monto:TarifaEmpresaReemplazo[i].valor})
               }
-              
-              
             }
-
-          
-
-
       });
-
-        
-
-
-
         this.Vision2 = true;
         this.Vision = false;
         this

@@ -17,6 +17,7 @@ export class TarifasEmpresaReemplazoFormComponent implements OnInit {
     parentMessage = []
 
     sucursalesid = [];
+    SucursalesComplete=[];
     sucursales = [];
     empresaReemplazo = [];
     form: FormGroup;
@@ -63,6 +64,7 @@ export class TarifasEmpresaReemplazoFormComponent implements OnInit {
             for (let i = 0; i < sucursales.length; i++) {
                 this.sucursales.push(sucursales[i].nombre_sucursal)
                 this.sucursalesid.push(sucursales[i].id_sucursal)
+                this.SucursalesComplete.push(sucursales[i]);
             }
 
         })
@@ -88,10 +90,13 @@ export class TarifasEmpresaReemplazoFormComponent implements OnInit {
                 .then((result) => {
                     /* Read more about isConfirmed, isDenied below */
                     if (result.isConfirmed) {
-                        for (let i = 0; i < this.sucursalesid.length; i++) {
+                        for (let i = 0; i < this.SucursalesComplete.length; i++) {
 
-                            if (this.sucursales[i] == this.form.value.Sucursal) {
-                                this.form.value.Sucursal = this.sucursalesid[i]
+
+                            if (this.SucursalesComplete[i].nombre_sucursal === this.form.value.Sucursal) {
+
+                                console.log();
+                                this.form.value.Sucursal = this.SucursalesComplete[i].id_sucursal
                             }
                         }
 

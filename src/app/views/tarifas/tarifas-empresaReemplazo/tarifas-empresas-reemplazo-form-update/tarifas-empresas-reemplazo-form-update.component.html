@@ -1,0 +1,209 @@
+<br />
+<div>
+  <h5>Tarifas empresas (Monto Neto).</h5>
+</div>
+<br />
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form class="form-groups" [formGroup]="form" (ngSubmit)="buscar()">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="submit">
+              Buscar empresa
+            </button>
+          </div>
+          <select class="form-control" formControlName="EmpresaReemplazo">
+            <option *ngFor="let empresa of EmpresaReemplazo" [value]="empresa">
+              {{ empresa }}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <form
+        class="form-groups"
+        [formGroup]="form2"
+        (ngSubmit)="CargarTablaConSucursales()"
+      >
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="submit">
+              Buscar Sucursal
+            </button>
+          </div>
+          <select class="form-control" formControlName="Sucursal">
+            <option *ngFor="let empresa of sucursalesName" [value]="empresa">
+              {{ empresa }}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<br />
+
+<div *ngIf="Vision">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Empresa Reemplazo</th>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Monto Neto</th>
+        <th scope="col">Actualizar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let datos of TarifaPorEmpresaReemplazo">
+        <td>{{ datos.codigo_empresaRemplazo }}</td>
+        <td>{{ datos.NombreSucursal }}</td>
+        <td>{{ datos.categoria }}</td>
+        <td>{{ datos.valor }}</td>
+        <td>
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            (click)="onSave(datos)"
+            class="btn btn-secondary btn-sm"
+          >
+            Editar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div *ngIf="Vision2">
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Empresa Reemplazo</th>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Monto Neto</th>
+        <th scope="col">Actualizar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let datos of data">
+        <td>{{ datos.Sucursal }}</td>
+        <td>{{ datos.Empresa }}</td>
+        <td>{{ datos.Categoria }}</td>
+        <td>{{ datos.Monto }}</td>
+        <td>
+          <button
+            type="button"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            (click)="onSave(datos)"
+            class="btn btn-secondary btn-sm"
+          >
+            Editar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div
+  class="modal fade bd-example-modal-lg"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Actualizar Tarifa</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form
+          class="form-groups"
+          [formGroup]="formUpdate"
+          (ngSubmit)="ActualizarDato()"
+        >
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">
+                Seleccionar Empresa
+              </button>
+            </div>
+            <select class="form-control" formControlName="EmpresaReemplazo">
+              <option
+                *ngFor="let empresa of EmpresaReemplazo"
+                [value]="empresa"
+              >
+                {{ empresa }}
+              </option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">
+                Seleccionar Sucursal
+              </button>
+            </div>
+            <select class="form-control" formControlName="Sucursales">
+              <option *ngFor="let empresa of sucursalesName" [value]="empresa">
+                {{ empresa }}
+              </option>
+            </select>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary" type="button">
+                Seleccionar
+              </button>
+            </div>
+            <select class="form-control" formControlName="Categoria">
+              <option *ngFor="let empresa of Categorias_List" [value]="empresa">
+                {{ empresa }}
+              </option>
+            </select>
+          </div>
+          <div class="row">
+            <div class="col">
+              <input
+                type="number"
+                formControlName="Valor"
+                class="form-control"
+                placeholder="Ingrese Monto Neto"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cerrar
+        </button>
+        <button
+          type="button"
+          (click)="ActualizarDato()"
+          class="btn btn-success"
+          data-dismiss="modal"
+        >
+          Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

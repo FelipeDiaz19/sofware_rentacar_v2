@@ -1,0 +1,79 @@
+<hr />
+<br />
+<div>
+  <h5>Tarifas empresas (Monto Neto).</h5>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <form class="form-groups" [formGroup]="form" (ngSubmit)="buscar()">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="submit">
+              Buscar empresa
+            </button>
+          </div>
+          <select class="form-control" formControlName="EmpresaReemplazo">
+            <option *ngFor="let empresa of EmpresaReemplazo" [value]="empresa">
+              {{ empresa }}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+    <div class="col">
+      <form
+        class="form-groups"
+        [formGroup]="form2"
+        (ngSubmit)="CargarTablaConSucursales()"
+      >
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="submit">
+              Buscar Sucursal
+            </button>
+          </div>
+          <select class="form-control" formControlName="Sucursales">
+            <option *ngFor="let empresa of sucursalesName" [value]="empresa">
+              {{ empresa }}
+            </option>
+          </select>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div *ngIf="Vision">
+  <ag-grid-angular
+    style="width: 100%; height: 300px"
+    class="ag-theme-alpine"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+  >
+  </ag-grid-angular>
+</div>
+
+<div *ngIf="Vision2">
+  <table class="table table-striped">
+    <thead class="btn-dark">
+      <tr>
+        <th scope="col">Sucursal</th>
+        <th scope="col">Empresa</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Monto Neto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of data">
+        <td>{{ data.Sucursal }}</td>
+        <td>{{ data.Empresa }}</td>
+        <td>{{ data.Categoria }}</td>
+        <td>{{ data.Monto }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

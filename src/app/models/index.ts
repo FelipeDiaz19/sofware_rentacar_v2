@@ -14,4 +14,5 @@ export { Cliente } from './clientes';
 export { Contacto } from './contactos';
 export { Conductor } from './conductores';
 export { Permiso } from './permisos';
+export { TarifasEmpresasReemplazo } from './tarifasEmpresasReemplazo';
 

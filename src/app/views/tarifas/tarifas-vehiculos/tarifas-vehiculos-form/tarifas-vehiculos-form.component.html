@@ -1,48 +1,87 @@
 <div class="tab-pane">
-  <br><br>
+  <br /><br />
 
   <form autocomplete="off" [formGroup]="form" (ngSubmit)="guardar()">
     <h5>Asignar tarifa a los vehiculos</h5>
-    <br>
+    <br />
     <div class="form-row">
       <div class="col-xl-4">
         <div class="form-group col-xl-12">
           <label for="valor_neto_diario">valor neto diario (1 dia) </label>
-          <input [class.is-invalid]="validarCampos('valor_neto_diario')" type="number" class="form-control "
-            formControlName="valor_neto_diario" #input1> Iva: {{calcularIva(input1.value)}} Bruto:
-          {{calcularBruto(input1.value)}}
+          <input
+            [class.is-invalid]="validarCampos('valor_neto_diario')"
+            type="number"
+            class="form-control"
+            formControlName="valor_neto_diario"
+            #input1
+          />
+          Iva: {{ calcularIva(input1.value) }} Bruto:
+          {{ calcularBruto(input1.value) }}
         </div>
         <div class="form-group col-xl-12">
           <label for="valor_neto_semanal">valor neto semanal (7 dias) </label>
-          <input [class.is-invalid]="validarCampos('valor_neto_semanal')" type="number" class="form-control"
-            formControlName="valor_neto_semanal" #input2> Iva: {{calcularIva(input2.value)}} Bruto:
-          {{calcularBruto(input2.value)}}
+          <input
+            [class.is-invalid]="validarCampos('valor_neto_semanal')"
+            type="number"
+            class="form-control"
+            formControlName="valor_neto_semanal"
+            #input2
+          />
+          Iva: {{ calcularIva(input2.value) }} Bruto:
+          {{ calcularBruto(input2.value) }}
         </div>
         <div class="form-group col-xl-12">
-          <label for="valor_neto_quincenal">valor neto quincenal (15 dias) </label>
-          <input [class.is-invalid]="validarCampos('valor_neto_quincenal')" type="number" class="form-control"
-            formControlName="valor_neto_quincenal" #input3>Iva: {{calcularIva(input3.value)}} Bruto:
-          {{calcularBruto(input3.value)}}
+          <label for="valor_neto_quincenal"
+            >valor neto quincenal (15 dias)
+          </label>
+          <input
+            [class.is-invalid]="validarCampos('valor_neto_quincenal')"
+            type="number"
+            class="form-control"
+            formControlName="valor_neto_quincenal"
+            #input3
+          />Iva: {{ calcularIva(input3.value) }} Bruto:
+          {{ calcularBruto(input3.value) }}
         </div>
         <div class="form-group col-xl-12">
           <label for="valor_neto_mensual">valor neto mensual (30 dias) </label>
-          <input [class.is-invalid]="validarCampos('valor_neto_mensual')" type="number" class="form-control"
-            formControlName="valor_neto_mensual" #input4>Iva: {{calcularIva(input4.value)}} Bruto:
-          {{calcularBruto(input4.value)}}
+          <input
+            [class.is-invalid]="validarCampos('valor_neto_mensual')"
+            type="number"
+            class="form-control"
+            formControlName="valor_neto_mensual"
+            #input4
+          />Iva: {{ calcularIva(input4.value) }} Bruto:
+          {{ calcularBruto(input4.value) }}
         </div>
-        <button type="submit" class="btn btn-success btn-sm m-1">Asignar tarifa</button>
+        <button type="submit" class="btn btn-success btn-sm m-1">
+          Asignar tarifa
+        </button>
       </div>
       <div class="col-xl-8">
-        <input type="search" #buscar placeholder="filtrar..." (keyup.enter)="onFilterTextBoxChanged(buscar.value)"
-          class="form-control m-1 col-md-4" />
-        <ag-grid-angular #agGrid style="width:100%; height: 380px;" class="ag-theme-alpine" [rowData]="rowData"
-          [columnDefs]="columnDefs" rowSelection="multiple" [animateRows]="true" [defaultColDef]="defaultColDef">
+        <input
+          type="search"
+          #buscar
+          placeholder="filtrar..."
+          (keyup.enter)="onFilterTextBoxChanged(buscar.value)"
+          class="form-control m-1 col-md-4"
+        />
+        <ag-grid-angular
+          #agGrid
+          style="width: 100%; height: 380px"
+          class="ag-theme-alpine"
+          [rowData]="rowData"
+          [columnDefs]="columnDefs"
+          rowSelection="multiple"
+          [animateRows]="true"
+          [defaultColDef]="defaultColDef"
+        >
         </ag-grid-angular>
       </div>
     </div>
   </form>
 
-
-  <app-tarifas-vehiculos-list [tarifaVehiculoList]="tarifaVehiculo"></app-tarifas-vehiculos-list>
-
+  <app-tarifas-vehiculos-list
+    [tarifaVehiculoList]="tarifaVehiculo"
+  ></app-tarifas-vehiculos-list>
 </div>

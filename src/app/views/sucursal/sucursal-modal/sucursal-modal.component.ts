@@ -1,3 +1,4 @@
+import { ArriendoService } from './../../../services/arriendo.service';
 import {
   Component, OnInit,
   ChangeDetectionStrategy,
@@ -29,8 +30,12 @@ import localeEs from '@angular/common/locales/es';
 registerLocaleData(localeEs);
 
 
-import { Sucursal } from 'src/app/models';
+import { Arriendo, Sucursal } from 'src/app/models';
 import { SucursalesService } from 'src/app/services/sucursales.service';
+
+
+
+
 
 
 const colors: any = {
@@ -56,13 +61,35 @@ const colors: any = {
 })
 export class SucursalModalComponent implements OnInit {
 
+
+  constructor(
+    private _sucursal: SucursalesService,
+    private modal: NgbModal,
+    private arriendoServicio: ArriendoService) { }
+
   sucursales: Sucursal[] = [];
   listThead: string[] = [];
+  arriendos: Arriendo[] = [];
+
+
+
 
 
   ngOnInit(): void {
     this.cargarSucursal();
   }
+
+
+  getAllArriendos(): void {
+    this.arriendoServicio.finndAllArriendos().subscribe(res => {
+      //for (let i = 0; i < res.length; i++) {
+      console.log(res);
+
+      //}
+    });
+  }
+
+
   cargarSucursal(): void {
     this._sucursal.getAll().subscribe((sucursales: Sucursal[]) => {
       sucursales.map((sucursal) => {
@@ -204,7 +231,7 @@ export class SucursalModalComponent implements OnInit {
 
   activeDayIsOpen: boolean = false;
 
-  constructor(private _sucursal: SucursalesService, private modal: NgbModal) { }
+
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {

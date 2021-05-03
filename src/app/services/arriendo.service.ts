@@ -13,8 +13,14 @@ export class ArriendoService {
 
   constructor(private http: HttpClient) { }
 
+
+
   findArriendo(ID: number): Observable<RequestResponse> {
     return this.http.get<RequestResponse>(`${environment.apiUrl}arriendos/buscarArriendo/${ID}`);
+  }
+
+  finndAllArriendos(): Observable<Arriendo> {
+    return this.http.get<Arriendo>(`${environment.apiUrl}arriendos/cargarArriendos`);
   }
 
   modificarTipo(ID: number, tipo: number, empresaRemplazo: string): Observable<RequestResponse> {

@@ -2,20 +2,110 @@
 <br>
 <app-tabla [listThead]="listThead">
     <tr *ngFor="let sucursal of sucursales">
-        <td>{{sucursal.nombre_sucursal}}</td>
-        <td>{{sucursal["regione"].nombre_region}}</td>
-        <td>{{sucursal["arriendos"].length}}</td>
-        <td>{{sucursal["cant_finalizados"]}}</td>
-        <td>{{sucursal["cant_activos"]}}</td>
-        <td>{{sucursal["cant_anulados"]}}</td>
-        <td>{{sucursal.createdAt}}</td>
-        <td class="text-center"><button class="btn btn-primary" mat-button (click)="openDialog()">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar"
-                viewBox="0 0 16 16">
-                <path
-                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
-            </svg>
-        </button>
-    </td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1">{{sucursal.nombre_sucursal}}</td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1">{{sucursal["regione"].nombre_region}}
+        </td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1">{{sucursal["arriendos"].length}}</td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1">{{sucursal["cant_finalizados"]}}</td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1">{{sucursal["cant_activos"]}}</td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1">{{sucursal["cant_anulados"]}}</td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1">{{sucursal.createdAt}}</td>
+        <td *ngIf="sucursal.id_sucursal == sucursalUsuario || RolUsuario == 1" class="text-center"> <button
+                class="btn btn-primary" (click)="mandarS(sucursal.id_sucursal)" data-toggle="modal"
+                data-target="#exampleModal" mat-button mwlCalendarToday [(viewDate)]="viewDate">
+
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-calendar" viewBox="0 0 16 16">
+                    <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z" />
+                </svg>
+
+            </button>
+        </td>
     </tr>
 </app-tabla>
+
+
+<!-- modal calendario  -->
+
+<div class="container">
+    <div style="width: 100%" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width: 180%; left: -40%; margin-top: -4%">
+
+                <div class="modal-body" style="margin-bottom: 0%; margin-top:-5%">
+
+                    <br><br>
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="btn-group">
+                                <div class="btn btn-primary" mwlCalendarPreviousView [view]="view"
+                                    [(viewDate)]="viewDate" (viewDateChange)="closeOpenMonthViewDay()">
+                                    Anterior
+                                </div>
+                                <div class="btn btn-outline-secondary" mwlCalendarToday [(viewDate)]="viewDate">
+                                    Hoy
+                                </div>
+                                <div class="btn btn-primary" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                                    (viewDateChange)="closeOpenMonthViewDay()">
+                                    Próximo
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'Es' }}</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="btn-group">
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div [ngSwitch]="view">
+                        <mwl-calendar-month-view [locale]="locale" *ngSwitchCase="CalendarView.Month"
+                            [viewDate]="viewDate" [events]="events" [refresh]="refresh"
+                            [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="dayClicked($event.day)"
+                            (eventClicked)="handleEvent('Clicked', $event.event)"
+                            (eventTimesChanged)="eventTimesChanged($event)">
+                        </mwl-calendar-month-view>
+
+
+                        <!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+
+                    </div>
+
+                    <div class="alert alert-info container" style="width: 100%; margin-top: 1%; margin-bottom:1%;">
+                        <span>
+                            <svg style="color:red;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                <circle cx="8" cy="8" r="8" />
+                            </svg>
+                            <label> &nbsp; Arriendo de tipo: EMPRESA </label>
+                        </span>
+                        <br>
+                        <span>
+                            <svg style="color:blue;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                <circle cx="8" cy="8" r="8" />
+                            </svg>
+                            <label> &nbsp; Arriendo de tipo: REEMPLAZO </label>
+                        </span>
+                        <br>
+                        <span>
+                            <svg style="color:yellow;" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                                <circle cx="8" cy="8" r="8" />
+                            </svg>
+                            <label> &nbsp; Arriendo de tipo: PARTICULAR </label>
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>

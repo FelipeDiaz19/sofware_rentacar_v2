@@ -19,8 +19,8 @@ export class ArriendoService {
     return this.http.get<RequestResponse>(`${environment.apiUrl}arriendos/buscarArriendo/${ID}`);
   }
 
-  finndAllArriendos(): Observable<Arriendo> {
-    return this.http.get<Arriendo>(`${environment.apiUrl}arriendos/cargarArriendos`);
+  finndAllArriendosPorSucursal(id: any): Observable<any> {
+    return this.http.get<RequestResponse>(`${environment.apiUrl}arriendos/cargarArriendosPorSucursal/${id}`);
   }
 
   modificarTipo(ID: number, tipo: number, empresaRemplazo: string): Observable<RequestResponse> {

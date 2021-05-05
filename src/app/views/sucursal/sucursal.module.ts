@@ -22,15 +22,15 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
   ],
 
   imports: [
-    CommonModule, AppRoutingModule, FormsModule, ReactiveFormsModule, TablaModule, 
+    CommonModule, AppRoutingModule, FormsModule, ReactiveFormsModule, TablaModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory })
   ],
 
   providers: [
-    SucursalesService, RegionesService
+    SucursalesService, RegionesService,
   ],
   exports: [
-    SucursalModalComponent
+    SucursalModalComponent,
   ]
 })
 export class SucursalModule { }

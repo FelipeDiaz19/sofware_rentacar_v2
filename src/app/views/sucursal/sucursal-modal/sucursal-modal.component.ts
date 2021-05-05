@@ -29,7 +29,7 @@ import localeEs from '@angular/common/locales/es';
 
 registerLocaleData(localeEs);
 
-
+import * as moment from 'moment';
 import { Arriendo, Sucursal } from 'src/app/models';
 import { SucursalesService } from 'src/app/services/sucursales.service';
 
@@ -70,8 +70,10 @@ export class SucursalModalComponent implements OnInit {
   sucursales: Sucursal[] = [];
   listThead: string[] = [];
   arriendos: Arriendo[] = [];
+  events: CalendarEvent[] = [];
 
-
+  fecha: Date;
+  fecha2: Date;
 
 
 
@@ -80,14 +82,6 @@ export class SucursalModalComponent implements OnInit {
   }
 
 
-  getAllArriendos(): void {
-    this.arriendoServicio.finndAllArriendos().subscribe(res => {
-      //for (let i = 0; i < res.length; i++) {
-      console.log(res);
-
-      //}
-    });
-  }
 
 
   cargarSucursal(): void {
@@ -138,9 +132,7 @@ export class SucursalModalComponent implements OnInit {
         sucursal['fechaarri'] = fechaArriendos;
 
 
-        console.log(idarriFinalizado);
-        console.log(idarriAnulado);
-        console.log(idarriActivo);
+
 
 
 
@@ -188,46 +180,7 @@ export class SucursalModalComponent implements OnInit {
 
   refresh: Subject<any> = new Subject();
 
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: 'A 3 day event',
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-    {
-      start: startOfDay(new Date()),
-      title: 'An event with no end date',
-      color: colors.yellow,
-      actions: this.actions,
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: 'A long event that spans 2 months',
-      color: colors.blue,
-      allDay: true,
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: addHours(new Date(), 2),
-      title: 'A draggable and resizable event',
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: true,
-        afterEnd: true,
-      },
-      draggable: true,
-    },
-  ];
+
 
   activeDayIsOpen: boolean = false;
 
@@ -270,13 +223,13 @@ export class SucursalModalComponent implements OnInit {
     this.modal.open(this.modalContent, { size: 'lg' });
   }
 
-  addEvent(): void {
+  addEvent(arriendo: Arriendo): void {
     this.events = [
       ...this.events,
       {
-        title: 'New event',
-        start: startOfDay(new Date()),
-        end: endOfDay(new Date()),
+        title: arriendo.ciudadEntrega_arriendo,
+        start: startOfDay(arriendo.fechaEntrega_arriendo),
+        end: endOfDay(arriendo.fechaRecepcion_arriendo),
         color: colors.red,
         draggable: true,
         resizable: {
